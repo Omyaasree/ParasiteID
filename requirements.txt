@@ -1,0 +1,7 @@
+tensorflow>=2.16
+jupyter
+ipykernel
+matplotlib
+pandas
+scikit-learn
+pillow
