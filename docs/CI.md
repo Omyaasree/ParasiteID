@@ -37,5 +37,5 @@ In Xcode: File → New → Target → *Unit Testing Bundle*, name it `ParasiteID
 Settings → Branches → protect `main` → require the **iOS CI / build-and-test** check to pass before merging.
 
 ## Known caveats
-- The project's deployment target is iOS 27.0; the runner's Xcode must support it. If the build fails with an SDK/deployment-target error, either lower the target in Xcode or pin a newer Xcode with a `sudo xcode-select -s` step.
+- The deployment target is iOS 17.0 (the code uses iOS 17 APIs such as the two-parameter `onChange`). If you raise it above what the runner's Xcode SDK supports, the build will warn or fail.
 - The scheme is shared (`ios/ParasiteIDApp.xcodeproj/xcshareddata`) so CI can find it. Don't delete it.
