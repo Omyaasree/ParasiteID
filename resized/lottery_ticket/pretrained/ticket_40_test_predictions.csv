@@ -1,0 +1,402 @@
+filepath,true_label,y_true,prob_nits,predicted_label,confidence_pct,correct
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0038_jpg.rf.dd260d801e4cd86751ddab2e8a24e7b4.jpg,other,0,0.0020014972,other,99.79985,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_046_png.rf.a5123737dbe06f6484fc6f6e19d3485d.jpg,nits,1,0.9998934,nits,99.98934,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0014_jpg.rf.747c8b78e14ca37a0705b4aa64c4a347.jpg,other,0,0.0009806,other,99.90194,True
+resized/Dandruff/Dandruff train/dandruff-hair_134_jpg.rf.47bf68493cbf81525e811df54b754ef8.jpg,other,0,0.014316472,other,98.56835,True
+resized/nits/Hair nits train/head_lice_0931_jpg.rf.01cedf30d0b7298a233439310c9da07f.jpg,nits,1,0.999554,nits,99.9554,True
+resized/Healthy Scalp/Healthy Scalp train/rn_image_picker_lib_temp_79e7376d-aa27-4614-b464-f5dd5c9babce_jpg.rf.0dc944d74f0fee0b518b936add929ad9.jpg,other,0,0.024321184,other,97.56788,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000113_jpg.rf.cb1a666779ad400c2515aba545c667aa.jpg,other,0,0.04418477,other,95.58153,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0030_jpg.rf.8b135ff2cbb4b7a25933ee720b362bbf.jpg,other,0,0.0062071965,other,99.37928,True
+resized/Dandruff/seborrheic_dermatitis_0203_jpg.rf.f7502cc75539096cd1dfc6d1bed86267.jpg,other,0,0.012667849,other,98.733215,True
+resized/nits/Hair nits train/24fe605caf9c45fb-1-_png.rf.8bbac13bb83e729ddcb4794f0aa39a7a.jpg,nits,1,0.99860376,nits,99.860374,True
+resized/nits/Hair nits train/head_lice_0730_jpg.rf.61dc05c4d09cc1782ece840074209618.jpg,nits,1,0.99813354,nits,99.813354,True
+resized/nits/Hair nits/7646409f294649f9frame-001-18-_jpg.rf.b7d8987cb72b1b255bf09175e80341bd.jpg,nits,1,0.9944571,nits,99.44571,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000051_jpg.rf.aa67036d2c327d1f0f365aeb4d4090c9.jpg,other,0,0.001778937,other,99.822105,True
+resized/nits/Hair nits train/64c68eed3183fd5e-2-_png.rf.f31711d7747cb9840fbb908db3028d92.jpg,nits,1,0.9997073,nits,99.970726,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0054_jpg.rf.a99d09f4206058bf44967a37d4490c9a.jpg,other,0,0.000898404,other,99.91016,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000158_jpg.rf.6dc70c79daf6ecb349fbb68373428b9d.jpg,other,0,0.0029122392,other,99.70878,True
+resized/nits/plucking nits 5.jpg,nits,1,0.9971181,nits,99.711815,True
+resized/Dandruff/Dandruff train/istockphoto-1271688071-612x612_jpg.rf.247434d908e2c34f4550173be029f5ed.jpg,other,0,0.00907715,other,99.092285,True
+resized/nits/Hair nits/7c32b6bba5373595-2-_png.rf.f63d5b95f68eabe7b4d71d366412f2f7.jpg,nits,1,0.9967025,nits,99.67025,True
+resized/nits/Hair nits train/ezgif-frame-024_jpg.rf.1fff25c3caa1a4882a27253ed291854a.jpg,nits,1,0.99998534,nits,99.998535,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0131_jpg.rf.f3da4b36ba64dad1de4e02bd514fc15c.jpg,other,0,0.0022409789,other,99.7759,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_028_png.rf.fb7c9e9ebca90fbb156d9664137a356e.jpg,nits,1,0.99829847,nits,99.82985,True
+resized/nits/Hair nits/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_075_png.rf.c775aa594b3747aad84dc7e6a58a6fd9.jpg,nits,1,0.9996963,nits,99.969635,True
+resized/nits/Hair nits train/2b498e54b3edf85f-5-_png.rf.2968c83f8a5106e1000b9457b6538b43.jpg,nits,1,0.9984602,nits,99.846016,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0261_jpg.rf.019c0a4bf290af4ad2b9a13fc8dc0de1.jpg,other,0,0.0013446606,other,99.86553,True
+resized/nits/Hair nits train/7646409f294649f9frame-001-17-_jpg.rf.f59e3e42f403945483fa58e421295ec2.jpg,nits,1,0.99952716,nits,99.95271,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0288_jpg.rf.b4b5e3978aab25a00f5d7dfe49e65bd3.jpg,other,0,0.0016534555,other,99.834656,True
+resized/Dandruff/Dandruff train/psoriasis_side_front_jpg.rf.a7f19bfd62fd009122a0eb9981a3a364.jpg,other,0,0.0014818325,other,99.851814,True
+resized/nits/Hair nits train/3ae883dbfca48d63-1-_jpg.rf.f1c545a6b0d0032c01c1e9ee93c655ca.jpg,nits,1,0.99990964,nits,99.99097,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0010_jpg.rf.553451facf1936ebedcf258c88f079c4.jpg,other,0,0.0058207847,other,99.417915,True
+resized/nits/Hair nits train/69c3a907bd3bcb3d-2-_png.rf.5ffabb306c100990c25d4ed48cb7bf62.jpg,nits,1,0.9998398,nits,99.98398,True
+resized/Dandruff/Dandruff train/16_jpg.rf.e2e63823e2ec3938f5d0361c21306b57.jpg,other,0,0.00089714787,other,99.910286,True
+resized/nits/Hair nits train/head_lice_0574_jpg.rf.a75335c69e57355e003e486820dac655.jpg,nits,1,0.29792455,other,70.20755,False
+resized/nits/Hair nits train/head_lice_0553_jpg.rf.a4b49a5b556671732a2ba1b3e7c2cb38.jpg,nits,1,0.9971034,nits,99.71034,True
+resized/Dandruff/Dandruff train/Screenshot-2025-12-30-at-14-16-00_png.rf.4ba50821181cd31d8b5e78eebda7c00c.jpg,other,0,0.0006664085,other,99.933365,True
+resized/Healthy Scalp/Healthy Scalp train/1710845178303_17108451601833133574875457877557_jpg.rf.97e38549720341beb8efb5171fbf47db.jpg,other,0,0.009819882,other,99.01801,True
+resized/Dandruff/Dandruff train/istockphoto-1042651512-612x612_jpg.rf.b0e39f013d74ac682118656a4c737432.jpg,other,0,0.3642587,other,63.57413,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0235_jpg.rf.544de9cc0cb0388cbc8894f760b22118.jpg,other,0,0.014264269,other,98.57357,True
+resized/nits/Hair nits train/head_lice_0574_jpg.rf.4e65c724458bdfe61cecea2a02c7d568.jpg,nits,1,0.20048922,other,79.95108,False
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0240_jpg.rf.4ad9afb3864e253368c979e622e37ec4.jpg,other,0,0.005420397,other,99.45796,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000041_jpg.rf.d70843190a6b0925cc6e33a2f608ce07.jpg,other,0,0.006603261,other,99.339676,True
+resized/Dandruff/Dandruff train/dandruff-hair_160_jpg.rf.9ab34e1d96f2b0c8ce58828e44925566.jpg,other,0,0.41403583,other,58.59642,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0254_jpg.rf.0af211e0ad784c2105711ff2faff5d66.jpg,other,0,0.008770092,other,99.122986,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000021_jpg.rf.7f602cec8e9887c8db53b07f6df3d451.jpg,other,0,0.0005029881,other,99.9497,True
+resized/nits/Hair nits train/7c32b6bba5373595-3-_png.rf.4947abb3dc35159466f0356d007ba41c.jpg,nits,1,0.9987361,nits,99.87361,True
+resized/nits/Hair nits train/24fe605caf9c45fb-2-_png.rf.d2d3454f7c858be442676c3f5b4ef71e.jpg,nits,1,0.9732242,nits,97.322426,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0246_jpg.rf.daa62de9a81f15c602a5b09997196d08.jpg,other,0,0.0061426926,other,99.385735,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0119_jpg.rf.fbea1ece513d4b68b5fc3c41fd3a1783.jpg,other,0,0.00028580145,other,99.97142,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0132_jpg.rf.778edb9bac30678f84cc4edbe096a37d.jpg,other,0,0.0038502554,other,99.614975,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0040_jpg.rf.6ec550a7d2902c65c7485361e4d26883.jpg,other,0,0.0028052789,other,99.71947,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_098_png.rf.3eddbbe5f626edca08b0489dec045c0d.jpg,nits,1,0.9975272,nits,99.752716,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000097_jpg.rf.47944495c89a29147f6686e95085f4c3.jpg,other,0,0.019296989,other,98.0703,True
+resized/Healthy Scalp/Healthy Scalp train/1710845178303_17108451601833133574875457877557_jpg.rf.3bcebf175e9c0e633898894ccd09908b.jpg,other,0,0.017758684,other,98.22414,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0156_jpg.rf.8a1fb5559d51c614102604aa7bc688bf.jpg,other,0,0.009250485,other,99.07495,True
+resized/Healthy Scalp/Healthy Scalp train/rn_image_picker_lib_temp_3f7bf15a-28fa-4b59-8908-85ec8b58e3ef_jpg.rf.b63fb65ce67b3baaea406b0882563a1f.jpg,other,0,0.020111833,other,97.988815,True
+resized/nits/Hair nits train/3ae883dbfca48d63-7-_jpg.rf.ad702239655ad4f74b8cf4645e4294a5.jpg,nits,1,0.7189847,nits,71.898476,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000022_jpg.rf.e031386593921ee7308c955576f656f1.jpg,other,0,0.0013009233,other,99.8699,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000059_jpg.rf.4cd716f2ae2f76d8e096851cb0fe0127.jpg,other,0,0.0015568866,other,99.844315,True
+resized/nits/Hair nits train/3bcb6bf11af7133a-7-_png.rf.77a4521c6e282d4713f2287aae5547c4.jpg,nits,1,0.9997835,nits,99.97835,True
+resized/Healthy Scalp/Healthy Scalp train/rn_image_picker_lib_temp_62a30ff4-b998-4e93-b1eb-9698766c3caa_jpg.rf.af86552453316e5413e639b53e2c468e.jpg,other,0,0.016917601,other,98.30824,True
+resized/Healthy Scalp/Healthy Scalp train/1710752325758_image_jpg.rf.cdb2c283954403d021194e12e698b287.jpg,other,0,0.0007043439,other,99.929565,True
+resized/nits/Hair nits train/3ae883dbfca48d63-7-_jpg.rf.f984a2e97a4a04c009cd601c187a9f92.jpg,nits,1,0.649485,nits,64.9485,True
+resized/nits/Hair nits train/3ae883dbfca48d63-12-_jpg.rf.4eb28b86ae0e2eec71d7a1859822dead.jpg,nits,1,0.9979175,nits,99.79175,True
+resized/Dandruff/Dandruff train/istockphoto-1173337506-612x612_jpg.rf.c8f6f23d25976098e6029f4e2c01d6df.jpg,other,0,0.015412399,other,98.45876,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0264_jpg.rf.5a6a826e135d939fa88e4c261b19731b.jpg,other,0,0.0005299511,other,99.94701,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_061_png.rf.c9ca4221d4fe23cada9254e851471fe1.jpg,nits,1,0.9993119,nits,99.93119,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000131_jpg.rf.9473665cde172b2736df9a3f89afdd3a.jpg,other,0,0.002383102,other,99.76169,True
+resized/nits/Hair nits train/27782355fb27f005-10-_png.rf.697b184ed7f8867cff3440c0c73e75aa.jpg,nits,1,0.99995434,nits,99.99544,True
+resized/nits/Hair nits train/head_lice_0578_jpg.rf.5fb41d831c4b55d69beffef95c56c4d7.jpg,nits,1,0.7302612,nits,73.02612,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0167_jpg.rf.baeb44d62a2c21b8bf104ef7b89855cd.jpg,other,0,0.0010791883,other,99.89208,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000012_jpg.rf.3d79f70501f104d161e3f6119e31d485.jpg,other,0,0.0044279993,other,99.5572,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000103_jpg.rf.e0d771d4e89ae62a04c948e4753d6640.jpg,other,0,0.0005485093,other,99.94515,True
+resized/nits/Hair nits train/3b64048c6233fac01-11-_png.rf.459f5fa4a3723767baab7df4e2f71cdb.jpg,nits,1,0.99990773,nits,99.990776,True
+resized/Dandruff/Dandruff train/dandruff-hair_101_jpg.rf.20e1848f713a63a72e6db21eae27ea49.jpg,other,0,0.009278032,other,99.0722,True
+resized/Dandruff/Dandruff train/dandruff-hair_89_jpg.rf.ce8f29271844f0555b87917cc0525a16.jpg,other,0,0.0033964058,other,99.66036,True
+resized/Dandruff/Dandruff train/dandruff-hair_93_jpg.rf.20d48cef9b1d277918d6a105800a74be.jpg,other,0,0.052947223,other,94.70528,True
+resized/nits/Hair nits train/6334f55866900797-3-_png.rf.b118b37eb5669f806da8494a361a39d3.jpg,nits,1,0.9995298,nits,99.95298,True
+resized/nits/Hair nits train/ezgif-frame-021_jpg.rf.e3de22d461b965835c6eeb81f3f1ae37.jpg,nits,1,0.9999559,nits,99.99559,True
+resized/nits/head nits 28.jpg,nits,1,0.99686915,nits,99.68691,True
+resized/Dandruff/Dandruff train/istockphoto-1941848474-612x612_jpg.rf.2c60e563457ba50caa45328480463054.jpg,other,0,0.0028250956,other,99.71749,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000033_jpg.rf.23eecae93df2c5a35729396177332b5c.jpg,other,0,0.022329303,other,97.76707,True
+resized/nits/Hair nits train/705a77ec4cd50d40-1-_png.rf.abf39abe348a96215372920477704ecd.jpg,nits,1,0.99999857,nits,99.999855,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0131_jpg.rf.5d51700d9a7b435ce84a237a7d5bf562.jpg,other,0,0.00045223566,other,99.95478,True
+resized/nits/Hair nits train/24fe605caf9c45fb-10-_png.rf.01681aec991b0e7718c641fcec0ac8cc.jpg,nits,1,0.9925735,nits,99.25735,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000046_jpg.rf.a4a9ac15dea8008102f5a6e84efc5ed3.jpg,other,0,0.016604597,other,98.33954,True
+resized/nits/Hair nits train/3a030b4ab88001a1-7-_png.rf.1b668231b14ad82b34ccf8452ce3eeef.jpg,nits,1,0.99982536,nits,99.98254,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000088_jpg.rf.7f5d2c0b176c9953425400c2053a80e0.jpg,other,0,0.00090653205,other,99.90935,True
+resized/Dandruff/Dandruff train/dandruff-hair_128_jpg.rf.ee7ac03c5dc95383d3dad2d57bc986f0.jpg,other,0,0.13945225,other,86.05478,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0047_jpg.rf.fe0489ec4bc29da02f48d48cfafe50dd.jpg,other,0,0.014588081,other,98.54119,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0128_jpg.rf.3efa070f6876d5a1300b7a24fa4aaf28.jpg,other,0,0.0011162997,other,99.888374,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_099_png.rf.03923d1769028cb90fdb9de578044631.jpg,nits,1,0.9981656,nits,99.81656,True
+resized/Dandruff/Dandruff train/istockphoto-1150345636-612x612_jpg.rf.aef542746d3a6bfec6d4a56712ed4cee.jpg,other,0,0.0014291205,other,99.857086,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0153_jpg.rf.5d026ed297ccabbd21c8bd292d7ba6b0.jpg,other,0,0.0008417479,other,99.915825,True
+resized/nits/Hair nits train/6334f55866900797-6-_png.rf.c3c857f28d24a43efd6f6f1dc05286f2.jpg,nits,1,0.9991461,nits,99.91461,True
+resized/nits/Hair nits train/7c32b6bba5373595-3-_png.rf.d46ee89e2ade8665169150e24788f69c.jpg,nits,1,0.9997908,nits,99.97908,True
+resized/nits/head nits 25.jpg,nits,1,0.9997086,nits,99.970856,True
+resized/nits/Hair nits train/3bcb6bf11af7133a-6-_png.rf.a7bda3c21bd94dce44acdb61080f7ac6.jpg,nits,1,0.9999995,nits,99.999954,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000097_jpg.rf.5a1ea7696d0dd7ef06c48de3dc3616c0.jpg,other,0,0.05197037,other,94.80296,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000081_jpg.rf.1528d196447fca4b4eb1019a135b1628.jpg,other,0,0.8652242,nits,86.522415,False
+resized/nits/Hair nits train/7646409f294649f9frame-001-15-_jpg.rf.bfaaa370d829051e7457c2ce0909cdec.jpg,nits,1,0.9998437,nits,99.984375,True
+resized/nits/head nits 27.jpg,nits,1,0.99744886,nits,99.74489,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000078_jpg.rf.c0ae6c1d715d54d81b92346f0ede363e.jpg,other,0,0.015994499,other,98.40055,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0223_jpg.rf.35b7fa8111107be7fbccb720cb29cf3c.jpg,other,0,0.002201732,other,99.77982,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000054_jpg.rf.e3a1470d02165e93637384bf3f776093.jpg,other,0,0.0010047758,other,99.89952,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0045_jpg.rf.0cbf3e0658f9c183761183de9676519c.jpg,other,0,0.0017782011,other,99.82218,True
+resized/Healthy Scalp/Healthy Scalp train/1710349776860_1000090522_jpg.rf.539d812ed14b575ddf6612ffef473ebd.jpg,other,0,0.002834827,other,99.716515,True
+resized/Dandruff/Dandruff train/istockphoto-614154874-640x640_jpg.rf.8167a1bd6f2f1cbcf80587ad9faeffe0.jpg,other,0,0.021279812,other,97.87202,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_087_png.rf.45e9b24bd3a1be1cbd08248e857792a5.jpg,nits,1,0.9998299,nits,99.98299,True
+resized/nits/Hair nits train/head_lice_0948_jpg.rf.c34d76e1c9d7233975c95c2a4bd3f324.jpg,nits,1,0.9983809,nits,99.83809,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0155_jpg.rf.12a3ca4a54590e43c0b2ed1cfc6c0a95.jpg,other,0,0.0040242686,other,99.59757,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_024_png.rf.2729cc8f7bc2bd8b3cbdde03226f1506.jpg,nits,1,0.9918624,nits,99.18624,True
+resized/Healthy Scalp/exhibition_202210_0000011_jpg.rf.f2aa50c18e0f6d9a1d5707bbd8277dc9.jpg,other,0,0.0032043438,other,99.679565,True
+resized/nits/Hair nits train/ezgif-frame-029_jpg.rf.0b5350e6cce1c6a913b4a9845a86b3ce.jpg,nits,1,0.99999654,nits,99.99966,True
+resized/nits/Hair nits train/6334f55866900797-15-_png.rf.92aa54b5a72cebd2b19d916b21792d45.jpg,nits,1,0.9999925,nits,99.99925,True
+resized/Dandruff/Dandruff train/istockphoto-1169066122-612x612_jpg.rf.b190f92132e44bbe5eb5f0d587caf9b4.jpg,other,0,0.03137285,other,96.86272,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000056_jpg.rf.1baedd7b9c2a8a74b9855a07a08e957c.jpg,other,0,0.0062154965,other,99.37845,True
+resized/nits/plucking nits 7.jpg,nits,1,0.99919564,nits,99.91956,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000082_jpg.rf.935976b882617e09f9ef8272c0eea739.jpg,other,0,0.0011019527,other,99.8898,True
+resized/nits/plucking nits 11.jpg,nits,1,0.9960033,nits,99.600334,True
+resized/Dandruff/Dandruff train/istockphoto-1813699814-612x612_jpg.rf.e49a9ea15472f41220de39e96dbd1e0b.jpg,other,0,0.00075066154,other,99.924934,True
+resized/nits/Hair nits train/head_lice_0922_jpg.rf.85900a87b59455dece43c13032191d1f.jpg,nits,1,0.999257,nits,99.925705,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0002_jpg.rf.a32bd9e6742d1ded1ebdcf3802ce6d34.jpg,other,0,0.005004594,other,99.49954,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0135_jpg.rf.68f412c6ddffb4072960f0a2e4b5bd9a.jpg,other,0,0.0006884643,other,99.93115,True
+resized/Dandruff/Dandruff train/istockphoto-1064091328-612x612_jpg.rf.252cad9583774f628ff8211ad3f1f8ce.jpg,other,0,0.039041672,other,96.09583,True
+resized/nits/Hair nits train/3ae883dbfca48d63-9-_jpg.rf.f08184ccfc230d6ab9296db8625bf274.jpg,nits,1,0.83670694,nits,83.67069,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_095_png.rf.3db18dbcdedce6a566ecaa8eb305a2e2.jpg,nits,1,0.9987313,nits,99.87313,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000073_jpg.rf.8ea7a608b75d280643e9b6c4ebbc1721.jpg,other,0,0.0094851665,other,99.05148,True
+resized/Dandruff/Dandruff train/dandruff-hair_104_jpg.rf.01346119fd57f05b3d0554af0b7e8451.jpg,other,0,0.06645781,other,93.35422,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_039_png.rf.d9d0e5c432c0566d1f7a5974f87b9320.jpg,nits,1,0.999619,nits,99.9619,True
+resized/nits/Hair nits train/head_lice_0947_jpg.rf.589b136440d682a8e61dfff613004a7f.jpg,nits,1,0.9962966,nits,99.62966,True
+resized/Dandruff/seborrheic_dermatitis_0182_jpg.rf.be3b39f6603e2e1c9e7df79322f8cdf4.jpg,other,0,0.035720885,other,96.42791,True
+resized/nits/single nit .jpg,nits,1,0.4177946,other,58.220543,False
+resized/nits/Hair nits train/659de3e71c7c873b-4-_png.rf.d3a96ed570bddc965b262469bbedefa4.jpg,nits,1,0.99966323,nits,99.966324,True
+resized/Dandruff/Dandruff train/dandruff-hair_95_jpg.rf.d1c172563076b1f7d9266995dff03b5b.jpg,other,0,0.0013806671,other,99.86193,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000158_jpg.rf.7bd59ab70b45ec1a2e0203f0ae26b2bc.jpg,other,0,0.0009402435,other,99.905975,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000110_jpg.rf.a39f05e7bca2bb82e0ae08e6d4f111a0.jpg,other,0,0.0035831989,other,99.64168,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000018_jpg.rf.00486aa0ddeb233a1e5f23f9b6537a66.jpg,other,0,0.0008834368,other,99.91165,True
+resized/nits/Hair nits train/dark-brown-lice-straight-hair_jpg.rf.fb12e316811e7d2529a6de5ec45d61b7.jpg,nits,1,0.9800994,nits,98.00994,True
+resized/nits/Hair nits train/7646409f294649f9frame-001-5-_jpg.rf.4454b2ffa133d9cb3a1ea54b67a94f45.jpg,nits,1,0.84656495,nits,84.656494,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000016_jpg.rf.4f7105feee077ba74bedc7b1555e1be9.jpg,other,0,0.0010509223,other,99.894905,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0179_jpg.rf.1c8f12f27eaddb320a03e21894ece715.jpg,other,0,0.0015679307,other,99.8432,True
+resized/nits/Hair nits/head_lice_0932_jpg.rf.b55e3eac120e4f09e8e87655346dfa53.jpg,nits,1,0.99749327,nits,99.74933,True
+resized/Dandruff/Dandruff train/istockphoto-1643806335-612x612_jpg.rf.ceacc200745a1dce8670876b65ef47d0.jpg,other,0,0.013111692,other,98.68883,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0135_jpg.rf.8b275c1e46dbcf8175d1f7a7295c02e7.jpg,other,0,0.009776409,other,99.02236,True
+resized/Healthy Scalp/Healthy Scalp train/rn_image_picker_lib_temp_8b5cc412-1027-4761-b4e1-9ff7fe011b2e_jpg.rf.e8b8d79c1ecf4471327b11e658a464dc.jpg,other,0,0.0021721923,other,99.78278,True
+resized/Dandruff/Dandruff train/istockphoto-1696613290-612x612_jpg.rf.2a98c9b475441fbfdd04ec10d1680124.jpg,other,0,0.04436648,other,95.563354,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000096_jpg.rf.3c601efa4570705e5624b2c9f139d813.jpg,other,0,0.00529044,other,99.470955,True
+resized/nits/Hair nits train/ezgif-frame-012_jpg.rf.766813a4c377e87c4562875ad4c49a1f.jpg,nits,1,0.62985545,nits,62.985546,True
+resized/Healthy Scalp/Healthy Scalp train/rn_image_picker_lib_temp_fd87bf69-f2c5-4a0c-bb33-f49acf2161d2_jpg.rf.2ff887fec383a2cbd495345a0fb5d8bf.jpg,other,0,0.00028354875,other,99.97165,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0221_jpg.rf.4584df8aad2aae2ed1011c8cc9846815.jpg,other,0,0.011195443,other,98.880455,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_077_png.rf.c8c90a7a1046397e354898982e5e228d.jpg,nits,1,0.999629,nits,99.962906,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000028_jpg.rf.e7b8596323c342499e9861da205665dd.jpg,other,0,0.002382933,other,99.7617,True
+resized/nits/Hair nits train/head_lice_0560_jpg.rf.734de76664a5bf179594939db8f129fd.jpg,nits,1,0.99002796,nits,99.0028,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0213_jpg.rf.7d02e08b8daba34ff4a94b380cd8c3b3.jpg,other,0,0.011239859,other,98.876015,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000052_jpg.rf.ce1fef0f08b273d07b5b142d7c5415d7.jpg,other,0,0.00391002,other,99.609,True
+resized/nits/Hair nits train/27c5201e74f4a431-2-_png.rf.4555a5b3d1997f56c87b1ce129009189.jpg,nits,1,0.99985635,nits,99.985634,True
+resized/Dandruff/Dandruff train/dandruff-hair_107_jpg.rf.28a8d2031fc645d1efb5fc05f312039f.jpg,other,0,0.029874573,other,97.01254,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_003_png.rf.7557bb14ed904a043f5fa5ee0e696391.jpg,nits,1,0.9604313,nits,96.04313,True
+resized/nits/nits 28.jpg,nits,1,0.99793065,nits,99.79307,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000099_jpg.rf.bb5629c558b90a9f1e8d275a65a4c60b.jpg,other,0,0.00532172,other,99.46783,True
+resized/nits/plucking nits 1.jpg,nits,1,0.99499226,nits,99.49922,True
+resized/Dandruff/Dandruff train/istockphoto-1813699814-612x612_jpg.rf.00638ae811e6444247f8faed5e1df7aa.jpg,other,0,0.0008826018,other,99.911736,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000112_jpg.rf.8bced89da689c56a997f304b84a96731.jpg,other,0,0.00842368,other,99.15763,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000024_jpg.rf.029cf6ea3a86b628b144d9d2996b9d26.jpg,other,0,0.0032870688,other,99.671295,True
+resized/nits/Hair nits train/69c3a907bd3bcb3d-8-_png.rf.ad9676d8cbecda058f5504fd40b9fe54.jpg,nits,1,0.9999523,nits,99.99523,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0091_jpg.rf.1195d5923e5ac613caaf3e5cf4571dcf.jpg,other,0,0.0029529934,other,99.704704,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000094_jpg.rf.94fc41f192a6be0bcaddc0530a8338fb.jpg,other,0,0.010523733,other,98.947624,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0100_jpg.rf.684ca3fb7d80c3189a6f265e33a67b67.jpg,other,0,0.009265286,other,99.07347,True
+resized/nits/Hair nits train/3b64048c6233fac01-7-_png.rf.d4fefd18502532935f3493e983ee973a.jpg,nits,1,0.9929503,nits,99.29503,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000027_jpg.rf.e7f6d09147ab3c9ec6c0220a47021992.jpg,other,0,0.011479214,other,98.85208,True
+resized/nits/Hair nits train/24fe605caf9c45fb-10-_png.rf.dd15e16ecd7e456b991eec20b1442316.jpg,nits,1,0.9999002,nits,99.99002,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000071_jpg.rf.f654e29bf02b7bbf67f1f4a3ba8f3891.jpg,other,0,0.00946405,other,99.0536,True
+resized/Dandruff/Dandruff train/dandruff-hair_92_jpg.rf.4d8a58f0a829811f0e796d0ae4f0e3c1.jpg,other,0,0.027847301,other,97.21527,True
+resized/nits/Hair nits train/705a77ec4cd50d40-6-_png.rf.daadc0439dac5d486cca39ef09035dd7.jpg,nits,1,0.99958533,nits,99.958534,True
+resized/Healthy Scalp/Healthy Scalp train/1710846607709_17108465609477606000236202772374_jpg.rf.5efc739bd17e137fed985be583e864e5.jpg,other,0,0.031318787,other,96.86812,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0225_jpg.rf.205847914d698e06bc76e492edbd9312.jpg,other,0,0.0008804695,other,99.91195,True
+resized/Healthy Scalp/Healthy Scalp train/-2025-04-24-02_34_41_png.rf.b0fd225642efcf991a5bee25bcc2a3cc.jpg,other,0,0.010917893,other,98.90821,True
+resized/Dandruff/Dandruff train/dandruff-hair_91_jpg.rf.93896a6f92a81a5f0d0fe439e8cce396.jpg,other,0,0.0063625034,other,99.36375,True
+resized/Dandruff/Dandruff train/dandruff-hair_81_jpg.rf.6011bf367316cb6c115173ce10e6fa10.jpg,other,0,0.0020905938,other,99.79094,True
+resized/nits/Hair nits train/7646409f294649f9frame-001-21-_jpg.rf.5f264f9317f1639ca761b1ce91dc32d0.jpg,nits,1,0.9999678,nits,99.99678,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0032_jpg.rf.a8d02e84a5dd73354001b24e0a5d46cc.jpg,other,0,0.0016490121,other,99.8351,True
+resized/nits/Hair nits train/3bcb6bf11af7133a-5-_png.rf.3d7d4d6edf38bc1b430eeba5cc42702b.jpg,nits,1,0.99994993,nits,99.994995,True
+resized/Healthy Scalp/Healthy Scalp train/1710438867941_image_jpg.rf.d3c130b138a71e2cc555d8c97170a33e.jpg,other,0,0.0004348284,other,99.95652,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000049_jpg.rf.9b18dc73bd14fcdc0bbcfb7f852a72b2.jpg,other,0,0.007262444,other,99.27375,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0251_jpg.rf.b7900119d2f2e7e47df807b955877660.jpg,other,0,0.00522428,other,99.47757,True
+resized/Dandruff/Dandruff train/istockphoto-2180136460-612x612_jpg.rf.ea27ee7ecd6d6c01b23a2c4df94b267b.jpg,other,0,0.009243461,other,99.07565,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0145_jpg.rf.647b209379c5c8b88ab593444d4db347.jpg,other,0,0.0009814819,other,99.90185,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000043_jpg.rf.bb29545350bb2b8175316e57f4d951d4.jpg,other,0,0.008081634,other,99.19184,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000034_jpg.rf.bcfb5e41cecebd96165cd4d9fb206bd2.jpg,other,0,0.0006593431,other,99.93407,True
+resized/Dandruff/Dandruff train/istockphoto-1042651512-612x612_jpg.rf.82b4de82f89d109ac915919adfd093e7.jpg,other,0,0.3783603,other,62.16397,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000068_jpg.rf.d5d3f32a5fcc055dc720c2ced9ef2cb0.jpg,other,0,0.010886364,other,98.91136,True
+resized/nits/Hair nits/7646409f294649f9frame-001-8-_jpg.rf.23533e4772af0c0c4958db771e911d4c.jpg,nits,1,0.99999535,nits,99.999535,True
+resized/nits/Hair nits train/ezgif-frame-019_jpg.rf.8485a1d5446ff814644cee5a4e5e669f.jpg,nits,1,0.9998206,nits,99.982056,True
+resized/Healthy Scalp/Healthy Scalp train/rn_image_picker_lib_temp_62a30ff4-b998-4e93-b1eb-9698766c3caa_jpg.rf.7e40049c086e22674abdc46d7fb55c6d.jpg,other,0,0.038127072,other,96.187294,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000048_jpg.rf.ecee968f705d91fbc5e07b02f88e79b7.jpg,other,0,0.028515691,other,97.14843,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0019_jpg.rf.227a3e706654796ddbe644fa903cc8e5.jpg,other,0,0.008662638,other,99.133736,True
+resized/nits/Hair nits/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_073_png.rf.b6bb5ef812f9a3e3ead7ca402e940920.jpg,nits,1,0.9990097,nits,99.90097,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000038_jpg.rf.7dc03e4ff21c1e34161f04962fc2e30a.jpg,other,0,0.002929416,other,99.70706,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000034_jpg.rf.fb21aba75ecfcf7c5642a911b20af5c3.jpg,other,0,0.011390212,other,98.86098,True
+resized/Dandruff/seborrheic_dermatitis_0290_jpg.rf.5b87096ee0b8c0e76cbe821e99ec25e6.jpg,other,0,0.003468142,other,99.65318,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0034_jpg.rf.94011a8246b157013b5f5a023708ce56.jpg,other,0,0.0012482135,other,99.875175,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000009_jpg.rf.128b1eb1c0716d04401acd6195daf2cd.jpg,other,0,0.008614468,other,99.13855,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000087_jpg.rf.e143e5dbef39cde997ce660ca88647a1.jpg,other,0,0.00041438424,other,99.958565,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_034_png.rf.d4d9e9dd94b83d39d6c76e57bc5c8ec3.jpg,nits,1,0.98662746,nits,98.66274,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000108_jpg.rf.6018f2fb74bdded0a86b558366828666.jpg,other,0,0.0051570516,other,99.48429,True
+resized/nits/Hair nits train/27782355fb27f005-15-_png.rf.dc641dd18d94813dacc0b90996fbc2e3.jpg,nits,1,0.9969337,nits,99.69337,True
+resized/Healthy Scalp/Healthy Scalp train/rn_image_picker_lib_temp_70c66425-1aa2-4b48-8da4-3fd73885fe5d_jpg.rf.e7545da8b3a8ff1df1eaceb967e989e3.jpg,other,0,0.0019640517,other,99.8036,True
+resized/nits/Hair nits train/head_lice_0929_jpg.rf.e009578f1f00dd224c3ee8e60dcdd30e.jpg,nits,1,0.9994479,nits,99.944786,True
+resized/Dandruff/Dandruff train/dandruff-hair_119_jpg.rf.8cb2a7fe2992cbd2fbab6bf9d018464b.jpg,other,0,0.010824599,other,98.91754,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0082_jpg.rf.8776c57165f86eaa679fb571979b27a8.jpg,other,0,0.0006954461,other,99.93045,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0118_jpg.rf.4b6c292f8cb9a6378ef9d6127f89daf7.jpg,other,0,0.0077514867,other,99.22485,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000037_jpg.rf.7669150773da69d28ffc0e16fd6b5d22.jpg,other,0,0.0049760733,other,99.50239,True
+resized/nits/Hair nits train/3ae883dbfca48d63-4-_jpg.rf.eb224ea41b6705ae7765a67eb55d6f94.jpg,nits,1,0.98363286,nits,98.36329,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000020_jpg.rf.b08e25a8826c74529de86e615bb4da3b.jpg,other,0,0.013619579,other,98.63804,True
+resized/nits/Hair nits train/6334f55866900797-8-_png.rf.46d06b3b598611719d4511a73ce1681d.jpg,nits,1,0.99971133,nits,99.97113,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000037_jpg.rf.1731ef28518d563196f235bae2838f43.jpg,other,0,0.0031678304,other,99.68322,True
+resized/nits/Hair nits train/head_lice_0957_jpg.rf.c7035ab5a5cf85cbf5a8d234d733b446.jpg,nits,1,0.99604887,nits,99.60489,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_037_png.rf.6b065760d233351d2f15e70b7646fbe6.jpg,nits,1,0.99995303,nits,99.9953,True
+resized/nits/Hair nits train/705a77ec4cd50d40-2-_png.rf.4eb5f1211aac8193513961918592b2a2.jpg,nits,1,0.9853618,nits,98.53618,True
+resized/nits/Hair nits train/head_lice_0554_jpg.rf.f0a7541dcebfb155a2f71b1d85b77047.jpg,nits,1,0.99815696,nits,99.8157,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_016_png.rf.1aaa7196850477309be11cd54dc31f8d.jpg,nits,1,0.99908876,nits,99.908875,True
+resized/nits/nits are tear shaped.jpg,nits,1,0.93877405,nits,93.8774,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_020_png.rf.71868f18f3398b599cd1f8e4c001a318.jpg,nits,1,0.958715,nits,95.871506,True
+resized/Healthy Scalp/Healthy Scalp train/1710883643168_inbound4192045267274553497_jpg.rf.e86f7c8332a8cb661ffc0ba208a8b686.jpg,other,0,0.03490354,other,96.50964,True
+resized/Dandruff/Dandruff train/istockphoto-592021604-612x612_jpg.rf.7d005dea8bf3f09a39a2bc393d30c90f.jpg,other,0,0.5683997,nits,56.839973,False
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0151_jpg.rf.34160daa60d2d43708111877fc4c125a.jpg,other,0,0.0009088243,other,99.90912,True
+resized/Healthy Scalp/Healthy Scalp train/1710438867941_image_jpg.rf.42f553db923853890f5dcc847df02e6b.jpg,other,0,0.00050872454,other,99.94913,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0147_jpg.rf.45cb705e173407f32a597dcc3f01c838.jpg,other,0,0.0009285613,other,99.90714,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000031_jpg.rf.3b69287ecb68f29ecb4564a528040db0.jpg,other,0,0.004271247,other,99.572876,True
+resized/Dandruff/Dandruff train/istockphoto-1271688071-612x612_jpg.rf.69f059176a474328f7c4b3741367d7e1.jpg,other,0,0.030921737,other,96.90782,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0216_jpg.rf.0fb5976ea2f8888b8d507bf51ff3ac5e.jpg,other,0,0.0014393308,other,99.856064,True
+resized/nits/Hair nits train/6334f55866900797-10-_png.rf.0371d1e7b9e1974c9737e9cace4ec791.jpg,nits,1,0.9999974,nits,99.99974,True
+resized/nits/Hair nits train/7646409f294649f9frame-001-21-_jpg.rf.d6c92dc9fa0f946a6ee861e678df0b66.jpg,nits,1,0.9985613,nits,99.85613,True
+resized/nits/Hair nits train/24fe605caf9c45fb-3-_png.rf.cdb3ef2e7d08884d6ed171bb8a83f59d.jpg,nits,1,0.9985966,nits,99.85966,True
+resized/Dandruff/Dandruff train/dandruff-hair_144_jpg.rf.1d6a4cc19e41bd73c127820dde629686.jpg,other,0,0.006405879,other,99.35941,True
+resized/Healthy Scalp/Healthy Scalp train/1710060686276_IMG_20240310_142103_jpg.rf.601fc66e2e0cb8bc766ea7c1215b7ad0.jpg,other,0,0.00052349793,other,99.94765,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000102_jpg.rf.ccde645a12010621c65e8e21e1e0b2a5.jpg,other,0,0.014102299,other,98.589775,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000098_jpg.rf.09d799ffed75a63d79e5349de7f31111.jpg,other,0,0.018824704,other,98.11753,True
+resized/nits/Hair nits train/27782355fb27f005-1-_png.rf.a10d2d300d9bfbca1a0f29ba95ef625f.jpg,nits,1,0.9983151,nits,99.83151,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000027_jpg.rf.e9ff81caf399a9044b9008995b6b38f9.jpg,other,0,0.00354943,other,99.64506,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0010_jpg.rf.c1f64228cf35023c4454938032c8ad38.jpg,other,0,0.00054385606,other,99.94562,True
+resized/nits/Hair nits train/3bcb6bf11af7133a-7-_png.rf.b6d8a0e6fc002a8ecc509aff64259f95.jpg,nits,1,0.99949265,nits,99.949265,True
+resized/nits/Hair nits train/27c5201e74f4a431-1-_png.rf.6fc7b4b2bbb5a7d46269fc000a8feb5f.jpg,nits,1,0.9873892,nits,98.73892,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0227_jpg.rf.aa6a128f4c4bc2c04dea7851c48b5f17.jpg,other,0,0.0069972253,other,99.30028,True
+resized/nits/Hair nits train/756704791c01f177-13-_png.rf.45a5132b87faae7f1dc6204a7f2eda12.jpg,nits,1,0.99996614,nits,99.99661,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0204_jpg.rf.241c2b051f9aee9b106c776832a8d3f3.jpg,other,0,0.0096504735,other,99.03495,True
+resized/nits/nits 14.jpg,nits,1,0.85469216,nits,85.469215,True
+resized/nits/Hair nits train/705a77ec4cd50d40-4-_png.rf.3445c590b8a2abe2f3fcd0f7c62a82b3.jpg,nits,1,0.9999008,nits,99.99008,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000065_jpg.rf.aa76101a3a54b0970951e02703e5d2af.jpg,other,0,0.0026221704,other,99.73778,True
+resized/nits/Hair nits train/7646409f294649f9frame-001-7-_jpg.rf.83dacd19f777966132e45559eab4e9e4.jpg,nits,1,0.963945,nits,96.3945,True
+resized/Dandruff/Dandruff train/istockphoto-183996925-612x612_jpg.rf.c7c9a94f56b7410ec01f864024e19140.jpg,other,0,0.00092415174,other,99.907585,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000099_jpg.rf.84cf76dd82fa4c4fbe6b32b266484bf7.jpg,other,0,0.032213993,other,96.7786,True
+resized/nits/Hair nits train/head_lice_0931_jpg.rf.64991cf6e96d295f94af8a1b879d71a6.jpg,nits,1,0.99905866,nits,99.90587,True
+resized/nits/Hair nits train/head_lice_0959_jpg.rf.31899949d810ed9c6d19821b2d1c805b.jpg,nits,1,0.9906735,nits,99.067345,True
+resized/Dandruff/dandruff-hair_117_jpg.rf.e54d8618a7ca7429d9239883b2cf9172.jpg,other,0,0.0009090806,other,99.90909,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0241_jpg.rf.8297b844a4b44dae72369d34846c7902.jpg,other,0,0.002666347,other,99.73337,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0248_jpg.rf.ec12de762bfa3c4d3e9125a4f48b4fe4.jpg,other,0,0.005746894,other,99.42531,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0133_jpg.rf.7b28401762a97fdc0fcf7347092ed851.jpg,other,0,0.0034242184,other,99.65758,True
+resized/Healthy Scalp/Healthy Scalp train/1000195811_jpg.rf.7776fa2a103271eb6a1f930fedd9c479.jpg,other,0,0.006857712,other,99.31423,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0025_jpg.rf.e4bee31f6743649039b08a29e2b37882.jpg,other,0,0.0038786042,other,99.61214,True
+resized/nits/plucking nits 4.jpg,nits,1,0.9991692,nits,99.916916,True
+resized/nits/Hair nits train/head_lice_0557_jpg.rf.d9b01a02449b7d777d262a14451af3cd.jpg,nits,1,0.99977756,nits,99.97775,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0096_jpg.rf.28ae6de0dfc27c651c53d76570c10a0e.jpg,other,0,0.0020644679,other,99.79356,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0167_jpg.rf.666511d6b8891a0adad8c00163d349c3.jpg,other,0,0.0048271855,other,99.51728,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000062_jpg.rf.05ba827b23d6262a54b8b70dde58e424.jpg,other,0,0.0023204056,other,99.76796,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000069_jpg.rf.6e5381c8c14528d390f21c1280896eea.jpg,other,0,0.006522753,other,99.347725,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000034_jpg.rf.0ddc4b1cdd91975082f6fb8b489e92a6.jpg,other,0,0.001119791,other,99.88802,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_003_png.rf.d6d34ba7b01e083b28ea8922b5a62495.jpg,nits,1,0.7213028,nits,72.13028,True
+resized/Healthy Scalp/Healthy Scalp train/rn_image_picker_lib_temp_e48777cf-df6a-4698-a842-a2e967e0c9d3_jpg.rf.e4cdba5e68e8a764d20ba6d9eb6d3221.jpg,other,0,0.11671485,other,88.328514,True
+resized/Dandruff/Dandruff train/dandruff-hair_91_jpg.rf.b1ef76484b033a1c0069d8b9d561b2bb.jpg,other,0,0.0045546107,other,99.54454,True
+resized/nits/Hair nits/head_lice_0952_jpg.rf.9c22585fb4435b6797e8c73e1ff2f3cc.jpg,nits,1,0.9989415,nits,99.89415,True
+resized/Healthy Scalp/Healthy Scalp train/1710847457549_image_jpg.rf.3ed435e73ee5fe7c71236348a1385a79.jpg,other,0,0.0028762426,other,99.71238,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0195_jpg.rf.7520a0a15e1e1408c24d3f233f18064c.jpg,other,0,0.027173683,other,97.28263,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0260_jpg.rf.2d0ac7a854d5d2c2ac38a8434f055997.jpg,other,0,0.0014815411,other,99.851845,True
+resized/Healthy Scalp/Healthy Scalp train/1710855638906_IMG_20240319_190946174_jpg.rf.66d18c7238aac91629c7cb11248793b9.jpg,other,0,0.00020543876,other,99.979454,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_021_png.rf.a8ef1d72611882731558323a35a889fb.jpg,nits,1,0.9749614,nits,97.49614,True
+resized/Dandruff/dandruff gif 7.jpg,other,0,0.0019385915,other,99.806145,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000108_jpg.rf.740cbc47dd19302ec77cb7abe7c5cabb.jpg,other,0,0.00428225,other,99.57178,True
+resized/nits/Hair nits train/759bc51afee35a90-10-_png.rf.959ec5076954fb831144cc594e739440.jpg,nits,1,0.99956983,nits,99.956985,True
+resized/Healthy Scalp/Healthy Scalp train/-2025-04-24-02_37_46_png.rf.1bd16dcfb6f07de5807d602711402410.jpg,other,0,0.0043468187,other,99.565315,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000092_jpg.rf.d68188e36ad0cffae30d0b43a2233527.jpg,other,0,0.026587946,other,97.3412,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0123_jpg.rf.f45068cf64a2295415b637300f46eafd.jpg,other,0,0.0041578547,other,99.58421,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000151_jpg.rf.1c1d368aeada16b1626f82c52e208390.jpg,other,0,0.057945546,other,94.205444,True
+resized/Dandruff/Dandruff train/dandruff1_jpg.rf.8cf4c8a7505fdb7dc29fb4047f57b843.jpg,other,0,0.009278194,other,99.07218,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0129_jpg.rf.75d4b6fbc36780da8b05c40fd59f3760.jpg,other,0,0.0030564666,other,99.69435,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_083_png.rf.b2558918208e92a91ce8ecbec2404346.jpg,nits,1,0.998898,nits,99.8898,True
+resized/Dandruff/dandruff gif 1.jpg,other,0,0.0024405723,other,99.75594,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000007_jpg.rf.6f7b7fafcd7f382ad36e691963bdf0f0.jpg,other,0,0.012164605,other,98.78354,True
+resized/nits/Hair nits train/759bc51afee35a90-4-_png.rf.2ea5c99c2f950f85b40a45479ab624f1.jpg,nits,1,0.99894696,nits,99.8947,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0220_jpg.rf.2ed7814a9ca749dd28d01108be6002e5.jpg,other,0,0.00071411714,other,99.92859,True
+resized/Healthy Scalp/Healthy Scalp train/rn_image_picker_lib_temp_b560e2d1-87f5-45a0-944f-e297584f440b_jpg.rf.b71243df06f6bb639e7534f7bb6cc8dd.jpg,other,0,0.041496437,other,95.85036,True
+resized/Dandruff/seborrheic_dermatitis_0097_jpg.rf.1fbe6e5e0e6069c03de1c906a8500975.jpg,other,0,0.0027875288,other,99.721245,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0064_jpg.rf.9900f049ffbad23ca7d0996873c9da74.jpg,other,0,0.008037551,other,99.19624,True
+resized/nits/Hair nits train/ezgif-frame-023_jpg.rf.12c69baecd38e537f848b54a81530a91.jpg,nits,1,0.9998944,nits,99.98944,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0178_jpg.rf.98af93cd96e36b37b4c37a9af5ab067b.jpg,other,0,0.0062725353,other,99.37274,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000092_jpg.rf.a55aafe8e760ac9b9ee0da5e183efdf3.jpg,other,0,0.4969164,other,50.308357,True
+resized/nits/Hair nits train/3b64048c6233fac01-9-_png.rf.87ad53c381aa83ad500f5e513e0d8f84.jpg,nits,1,0.99992156,nits,99.99216,True
+resized/Dandruff/Dandruff train/istockphoto-2180136460-612x612_jpg.rf.08b6b936fe9323b66d56ae946c31704f.jpg,other,0,0.012754821,other,98.72452,True
+resized/nits/Hair nits train/2044faf549995d25-5-_png.rf.8f508588d568f186b8bbe78c65e0be57.jpg,nits,1,0.9974763,nits,99.74763,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000075_jpg.rf.705c184e3d5105cc5ba2e3f4b80486f1.jpg,other,0,0.0024963086,other,99.75037,True
+resized/nits/Hair nits train/659de3e71c7c873b-4-_png.rf.8faaf9be884a08e7a12b4f38fcc92d21.jpg,nits,1,0.99824107,nits,99.824104,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_036_png.rf.a02ee481f7e3d03c3cd21a66e1ffce43.jpg,nits,1,0.9981762,nits,99.81762,True
+resized/Healthy Scalp/exhibition_202210_0000118_jpg.rf.137b9b73432c15e602820d32da6b77dd.jpg,other,0,0.010795083,other,98.920494,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000058_jpg.rf.48f256df2884b4dbac3c75e200e9e541.jpg,other,0,0.008959493,other,99.10405,True
+resized/nits/Hair nits train/7646409f294649f9frame-001-4-_jpg.rf.d49bc0ee668a6891b9d66e3c8f6a6516.jpg,nits,1,0.9998555,nits,99.98555,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000048_jpg.rf.6a9e050e56036b6506636890bf5385b4.jpg,other,0,0.0047243675,other,99.527565,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000030_jpg.rf.7cad0f7599aea0c3e7da6019313580df.jpg,other,0,0.0012593109,other,99.87407,True
+resized/nits/Hair nits train/head_lice_0733_jpg.rf.0fbfceaa4048394f5dbdd53e03dfd9c8.jpg,nits,1,0.9996814,nits,99.96814,True
+resized/nits/Hair nits train/759bc51afee35a90-2-_png.rf.abf9b357bc5d6e82c3589efa4be4f85d.jpg,nits,1,0.9998765,nits,99.98765,True
+resized/nits/head nits 19.jpg,nits,1,0.99992263,nits,99.99226,True
+resized/nits/Hair nits train/705a77ec4cd50d40-1-_png.rf.fba2c44569a67b986f3bc06316470a07.jpg,nits,1,0.9999968,nits,99.99968,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000007_jpg.rf.ef596cf4f83d63d002ea9048836d5875.jpg,other,0,0.0266488,other,97.33512,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000090_jpg.rf.afeeb5fe65c2859752a8ff2189e14f0e.jpg,other,0,0.0013871772,other,99.86128,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0167_jpg.rf.a175ef9a6caabc8149e2ad87f46fac2a.jpg,other,0,0.0007249594,other,99.927505,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000008_jpg.rf.eea35a408f3227a5c0959673d75655eb.jpg,other,0,0.0042846035,other,99.57154,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000097_jpg.rf.8db2175ba32973e887dc160eb9c59f66.jpg,other,0,0.18948725,other,81.05128,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000086_jpg.rf.cc0a687b0f596db4ebefc93bd737db61.jpg,other,0,0.0013043571,other,99.86957,True
+resized/nits/Hair nits train/head_lice_0732_jpg.rf.9a02a663ec508f4ca74bc6b318460426.jpg,nits,1,0.9996844,nits,99.96844,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000039_jpg.rf.d9dcff492f0667a7f7213270b704ed30.jpg,other,0,0.004197733,other,99.58023,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000057_jpg.rf.59ef2263950879184d36df115574b67f.jpg,other,0,0.0008923078,other,99.910774,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000115_jpg.rf.9bf6dda7dab9df2a358558b336ee154d.jpg,other,0,0.020050434,other,97.99496,True
+resized/nits/nits 10.jpg,nits,1,0.99310017,nits,99.31001,True
+resized/Dandruff/Dandruff train/istockphoto-1463713365-612x612_jpg.rf.4d92ec285ff38245b47130448741e650.jpg,other,0,0.0010028874,other,99.89971,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000109_jpg.rf.5f0b814d6bee986fc6dd13cec9199ab4.jpg,other,0,0.10594611,other,89.40539,True
+resized/Dandruff/Dandruff train/istockphoto-1363298364-612x612_jpg.rf.6da6cfecd8a0f2500c6ab5814b6d26d3.jpg,other,0,0.020428136,other,97.95719,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000092_jpg.rf.ebbb8ee752ccebddf5074e26b325903b.jpg,other,0,0.03565736,other,96.434265,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000031_jpg.rf.ea1817c3c460c4b145067346f8156428.jpg,other,0,0.004368241,other,99.56318,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000051_jpg.rf.c3ef9eb467e74ac61db9ed5637520dc2.jpg,other,0,0.0020279258,other,99.79721,True
+resized/nits/Hair nits train/HairFairiesHeadLiceHelpersInc-405531-Lice-Goes-Untreated-blogbanner1-1200x423_jpg.rf.7d59b76e0fc8f0e9f9b93f62e79086fd.jpg,nits,1,0.99869573,nits,99.869576,True
+resized/nits/Hair nits train/64c68eed3183fd5e-1-_png.rf.a6db5fae223940e8aeb244d3ba1ff88f.jpg,nits,1,0.9926479,nits,99.264786,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0170_jpg.rf.2695f70700b577f8e0bff8c672d6c74b.jpg,other,0,0.008762358,other,99.123764,True
+resized/nits/Hair nits train/3bcb6bf11af7133a-3-_png.rf.c014a8a39b907455050a41c33dfdb64b.jpg,nits,1,0.9999987,nits,99.99987,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000101_jpg.rf.a7603d25fce1e4abb55bd53f21cf8225.jpg,other,0,0.022858888,other,97.71411,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000055_jpg.rf.200d7d60bff2838470763f851e3f4370.jpg,other,0,0.0052607628,other,99.47392,True
+resized/Dandruff/Dandruff train/istockphoto-2182418063-612x612_jpg.rf.62e3629d6a5a1b320c0f484e0b3e14c9.jpg,other,0,0.00631426,other,99.368576,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_054_png.rf.907d8771f32aaa91575d0a2d2076d9eb.jpg,nits,1,0.9999429,nits,99.99429,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000060_jpg.rf.e8d65229d83bdf753df1c7d90b032ed1.jpg,other,0,0.01025118,other,98.974884,True
+resized/nits/head nits 11.jpg,nits,1,0.9998522,nits,99.985214,True
+resized/nits/Hair nits train/659de3e71c7c873b-1-_png.rf.f47715d63fd223f2260fb57c1820a5bd.jpg,nits,1,0.99821293,nits,99.8213,True
+resized/Dandruff/Dandruff train/istockphoto-1215946244-612x612_jpg.rf.a6c99b56d5a4d97406fa1f726d331873.jpg,other,0,0.0010892075,other,99.891075,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000007_jpg.rf.5abe6ec9750655b9aa243a14ac30b3b7.jpg,other,0,0.02098371,other,97.90163,True
+resized/nits/Hair nits train/659de3e71c7c873b-1-_png.rf.cedcee788d3193f17d93d383d6ffe4f1.jpg,nits,1,0.9994688,nits,99.946884,True
+resized/nits/Hair nits train/head_lice_0943_jpg.rf.d87050e13980126bc457d4034626bb22.jpg,nits,1,0.999899,nits,99.98991,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000129_jpg.rf.e837158c576036fde7fac66cf5e39b20.jpg,other,0,0.005232812,other,99.476715,True
+resized/Dandruff/Dandruff train/istockphoto-1407611789-612x612_jpg.rf.8d2381192121db5b5d029256e951bcf7.jpg,other,0,0.0017022046,other,99.82978,True
+resized/Healthy Scalp/Healthy Scalp train/1710060686276_IMG_20240310_142103_jpg.rf.462e5579c2e52e1a3ea131610f773c7b.jpg,other,0,0.0035630425,other,99.64369,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0225_jpg.rf.f3f5fdaed570d735db778af6519d1a2e.jpg,other,0,0.007697245,other,99.23028,True
+resized/Dandruff/Dandruff train/istockphoto-1270415974-612x612-1-_jpg.rf.520b4ce0228d1554511685ff183588ab.jpg,other,0,0.0028176578,other,99.71824,True
+resized/Healthy Scalp/Healthy Scalp train/1000813642_jpg.rf.d2d919473bdacbf2cb8c03e935237e9c.jpg,other,0,0.008614477,other,99.13855,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0109_jpg.rf.b29c9197526ecb73de7fdbb9ce446de0.jpg,other,0,0.0024414733,other,99.75585,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0004_jpg.rf.fc0b56536dd4a7dfeabc8ee1d5e59b8e.jpg,other,0,0.0037614163,other,99.623856,True
+resized/nits/Hair nits train/head_lice_0555_jpg.rf.d3d52f4b9d90401ba352ddc72b5ae78b.jpg,nits,1,0.9950166,nits,99.501656,True
+resized/nits/head nits 10.jpg,nits,1,0.99979293,nits,99.979294,True
+resized/nits/Hair nits train/original_jpg.rf.852ec4cb1ef6152330fad1d1a0058453.jpg,nits,1,0.13806988,other,86.193016,False
+resized/Healthy Scalp/Healthy Scalp train/1710846607709_17108465609477606000236202772374_jpg.rf.23de0adde08bff870707b58ad904dca1.jpg,other,0,0.024436751,other,97.55632,True
+resized/nits/Hair nits train/head_lice_0571_jpg.rf.6dc7ff5289c1ed596e0ac447e72d5198.jpg,nits,1,0.9819018,nits,98.190186,True
+resized/nits/Hair nits train/69c3a907bd3bcb3d-11-_png.rf.9a85716f67012d07ecd96fe98ddf08ff.jpg,nits,1,0.99993896,nits,99.9939,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000053_jpg.rf.baeebb877493202b5f3564f304c632e3.jpg,other,0,0.005440467,other,99.455956,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_077_png.rf.52da2f7a316590cc4174b00fa5d99e7d.jpg,nits,1,0.9991663,nits,99.91663,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0012_jpg.rf.e31283faff963533921d7d3aa5ca7447.jpg,other,0,0.010994526,other,98.90054,True
+resized/nits/Hair nits train/3bcb6bf11af7133a-1-_png.rf.794dc4832b65ab173bde62091c8c08f5.jpg,nits,1,0.9993807,nits,99.93807,True
+resized/nits/Hair nits/69c3a907bd3bcb3d-4-_png.rf.65a7bc5d3fd7152240b91ce390784013.jpg,nits,1,0.99992585,nits,99.992584,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0204_jpg.rf.c63e9da524161c679c542f3ab68c58fa.jpg,other,0,0.006315852,other,99.368416,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0107_jpg.rf.dc13371cd6d1ec74d1bb5d1fcebf9df9.jpg,other,0,0.0022767133,other,99.77233,True
+resized/nits/Hair nits train/27782355fb27f005-15-_png.rf.8d7663ce697f3e58760bfb815120096c.jpg,nits,1,0.99160755,nits,99.16075,True
+resized/nits/Hair nits/2318131c5b6e4f941-4-_png.rf.3809ab021c320aa2205ccd800525bfa0.jpg,nits,1,0.99125135,nits,99.12514,True
+resized/Dandruff/dandruff is irregular in shape.jpg,other,0,0.044332758,other,95.56673,True
+resized/nits/Hair nits train/3ae883dbfca48d63-8-_jpg.rf.b85e624ebab403c768632213ebdecd2f.jpg,nits,1,0.95047075,nits,95.04707,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0152_jpg.rf.bd85d78662e83da0c37ec6a3ef1ce2f6.jpg,other,0,0.0014214166,other,99.857864,True
+resized/nits/Hair nits train/7646409f294649f9frame-001-10-_jpg.rf.942cd2f7a5446ef1659ee86711183c3d.jpg,nits,1,0.9979942,nits,99.799416,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000103_jpg.rf.1e524a56bf49006136dee4abb8197e3a.jpg,other,0,0.00067841285,other,99.93216,True
+resized/nits/Hair nits train/head_lice_1099_jpg.rf.39e89947282ae1cbb565541354c9bc07.jpg,nits,1,0.99950933,nits,99.950935,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000020_jpg.rf.102dbf5a839f71a6ab890812988eb9d7.jpg,other,0,0.009204611,other,99.07954,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0191_jpg.rf.7e19aae65732b11d463eaf42719b0462.jpg,other,0,0.0050447653,other,99.49552,True
+resized/Healthy Scalp/Healthy Scalp train/-2025-04-24-02_32_49_png.rf.0d1e5b03fbad5b71d67685009ae88629.jpg,other,0,0.0037169184,other,99.6283,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0260_jpg.rf.307ac898ac44f5b6f664c20cba3651b1.jpg,other,0,0.0036481773,other,99.635185,True
+resized/Dandruff/Dandruff train/istockphoto-1289783506-612x612_jpg.rf.7ff2a57502524777a2cbc7695bb62834.jpg,other,0,0.015181069,other,98.481895,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202210_0000024_jpg.rf.28f0f142628a8429987daa3a2dabb3b6.jpg,other,0,0.0039487532,other,99.605125,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_047_png.rf.83fd7032aabe94df63ff90930223c64a.jpg,nits,1,0.9998323,nits,99.98323,True
+resized/Healthy Scalp/Healthy Scalp train/1710511127294_17105111007288106761478347641713_jpg.rf.2376192b5689fc0e9e0c8adc5079dc14.jpg,other,0,0.016359707,other,98.36403,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_023_png.rf.b88307753cec0b269cb8603ba24dc082.jpg,nits,1,0.9982262,nits,99.822624,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0262_jpg.rf.4a5edef8fb2333d13c7090b3eddbc9e3.jpg,other,0,0.004900629,other,99.50993,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0024_jpg.rf.abdd1d9682234370a59263b040914f41.jpg,other,0,0.0061763492,other,99.38236,True
+resized/Healthy Scalp/exhibition_202304_0000029_jpg.rf.c9040bc229f189a36694ca084a93a1f4.jpg,other,0,0.0016987368,other,99.830124,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_003_png.rf.b262ad005af99946b63250546041e3e1.jpg,nits,1,0.9911335,nits,99.11335,True
+resized/nits/Hair nits train/3ae883dbfca48d63-9-_jpg.rf.d42f713577a20d153a40ca6254d54653.jpg,nits,1,0.9707215,nits,97.07215,True
+resized/nits/Hair nits train/Nits-lice-treatment-in-Chennai-100-result-headliceremoval-headlice-liceremoval-licetreatment-nits_094_png.rf.62e1938838f584f324d46deb0a3e84dd.jpg,nits,1,0.9994579,nits,99.94579,True
+resized/Dandruff/Dandruff train/istockphoto-901404708-612x612_jpg.rf.52d976b7aa43164641cbde488fde554a.jpg,other,0,0.0024402041,other,99.75598,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0210_jpg.rf.83dae7d71f97b97ff7cf48625a49f316.jpg,other,0,0.00049476547,other,99.95052,True
+resized/nits/Hair nits train/27782355fb27f005-15-_png.rf.317be9055a3ba4048fccb5634101faee.jpg,nits,1,0.9959838,nits,99.59838,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0126_jpg.rf.2c678293d5f9d4c3c3c2d077dbc35805.jpg,other,0,0.003831843,other,99.61681,True
+resized/nits/Hair nits train/756704791c01f177-10-_png.rf.9905301e69e4e8f9c06ada54bc3ab750.jpg,nits,1,0.99808395,nits,99.808395,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202212_0000154_jpg.rf.39b7aadfaabbf2bc910d32340d8b4eae.jpg,other,0,0.022795286,other,97.720474,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0078_jpg.rf.2c1e589fc622ca2e98c21dfb191e0d9a.jpg,other,0,0.0019346238,other,99.80653,True
+resized/Healthy Scalp/Healthy Scalp train/exhibition_202304_0000094_jpg.rf.778ea77c953a2a04baba58fa281981b5.jpg,other,0,0.0007224387,other,99.92775,True
+resized/nits/Hair nits train/3bcb6bf11af7133a-4-_png.rf.88134a7ae72ca606506c4f64e4e15860.jpg,nits,1,0.99996316,nits,99.996315,True
+resized/nits/Hair nits train/ezgif-frame-017_jpg.rf.3519d038b90b06f868179e149a276a7e.jpg,nits,1,0.99988604,nits,99.9886,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0183_jpg.rf.295d654b76ed41dcb87c8edaa378110e.jpg,other,0,0.003955755,other,99.60442,True
+resized/nits/Hair nits train/YTDown-com_Shorts_Removing-lice-from-dark-hair-lice-piojos_Media_D0MCQuW-FIY_001_720p_070_png.rf.277ee4d81e1afc35f3cb82521fc1ee01.jpg,nits,1,0.96458423,nits,96.45842,True
+resized/Dandruff/Dandruff train/seborrheic_dermatitis_0045_jpg.rf.8692cb3615232cc6f11311ab7698449c.jpg,other,0,0.0017175989,other,99.82824,True
+resized/Dandruff/Dandruff train/istockphoto-1021543378-612x612_jpg.rf.d231fedbd4290cfd47a264dd083811b6.jpg,other,0,0.0012647345,other,99.87353,True

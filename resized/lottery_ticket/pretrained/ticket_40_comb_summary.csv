@@ -1,0 +1,4 @@
+resize,nits_detected,nits_total,detect_pct,false_nits,other_total,false_pct,accuracy,precision,recall,f1,mean_prob_nits,mean_prob_other
+squash,96,96,100.0,0,96,0.0,1.0,1.0,1.0,1.0,0.8939154744148254,0.012548413127660751
+centercrop,96,96,100.0,0,96,0.0,1.0,1.0,1.0,1.0,0.8939154744148254,0.012548413127660751
+letterbox,96,96,100.0,0,96,0.0,1.0,1.0,1.0,1.0,0.8939154744148254,0.012548413127660751
