@@ -1,6 +1,7 @@
 import Foundation
 import Combine
 import PhotosUI
+import SwiftUI
 
 protocol ImageDetector {
     func detect(imageData: Data) async throws -> DetectionResult
