@@ -1,0 +1,74 @@
+name: iOS CI
+
+on:
+  pull_request:
+    paths: ["ios/**", ".github/workflows/ios-ci.yml"]
+  push:
+    branches: [main]
+    paths: ["ios/**", ".github/workflows/ios-ci.yml"]
+  workflow_dispatch:
+
+concurrency:
+  group: ios-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: ios
+    env:
+      PROJECT: ParasiteIDApp.xcodeproj
+      SCHEME: ParasiteIDApp
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show Xcode and available simulators
+        run: |
+          xcodebuild -version
+          xcrun simctl list devices available | head -30
+
+      - name: Build
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project "$PROJECT" -scheme "$SCHEME" \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO | tee build.log
+
+      - name: Detect test targets
+        id: detect
+        run: |
+          if grep -q "com.apple.product-type.bundle.unit-test\|com.apple.product-type.bundle.ui-testing" "$PROJECT/project.pbxproj"; then
+            echo "has_tests=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_tests=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No test target yet - skipping tests. Add a unit test target in Xcode and tests will run automatically."
+          fi
+
+      - name: Test
+        if: steps.detect.outputs.has_tests == 'true'
+        run: |
+          set -o pipefail
+          DEVICE=$(xcrun simctl list devices available | grep -m1 -oE 'iPhone [^(]+' | sed 's/ *$//')
+          echo "Using simulator: $DEVICE"
+          xcodebuild test \
+            -project "$PROJECT" -scheme "$SCHEME" \
+            -destination "platform=iOS Simulator,name=$DEVICE" \
+            -derivedDataPath build \
+            -resultBundlePath TestResults.xcresult \
+            CODE_SIGNING_ALLOWED=NO | tee test.log
+
+      - name: Upload logs and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-ci-logs
+          path: |
+            ios/build.log
+            ios/test.log
+            ios/TestResults.xcresult
+          if-no-files-found: ignore
