@@ -3,7 +3,7 @@
 Workflow: `.github/workflows/ios-ci.yml` (GitHub Actions, macOS runner).
 
 ## When it runs
-- On every pull request that touches `ios/**` (or the workflow file)
+- On every pull request
 - On pushes to `main`
 - Manually: GitHub → Actions → "iOS CI" → *Run workflow*
 
