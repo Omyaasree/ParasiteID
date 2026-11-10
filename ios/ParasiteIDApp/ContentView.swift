@@ -1,5 +1,3 @@
-// xcode: set sdk=iOS
-
 import SwiftUI
 import PhotosUI
 import UIKit

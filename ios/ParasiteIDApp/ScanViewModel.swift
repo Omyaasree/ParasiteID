@@ -1,6 +1,7 @@
 import Foundation
 import Combine
 import PhotosUI
+import SwiftUI
 
 protocol ImageDetector {
     func detect(imageData: Data) async throws -> DetectionResult
@@ -33,6 +34,7 @@ final class ScanViewModel: ObservableObject {
     func scan(photo: PhotosPickerItem) async {
         isScanning = true
         result = nil
+        selectedImageData = nil
 
         do {
             guard let imageData = try await photo.loadTransferable(type: Data.self) else {
