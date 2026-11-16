@@ -27,8 +27,8 @@ final class ScanViewModel: ObservableObject {
 
     private let detector: any ImageDetector
 
-    init(detector: any ImageDetector = MockImageDetector()) {
-        self.detector = detector
+    init(detector: (any ImageDetector)? = nil) {
+        self.detector = detector ?? MockImageDetector()
     }
 
     func scan(photo: PhotosPickerItem) async {
@@ -42,15 +42,31 @@ final class ScanViewModel: ObservableObject {
                 isScanning = false
                 return
             }
+            await process(imageData: imageData)
+        } catch {
+            message = "We couldn't process that photo. Please try another one."
+            isScanning = false
+        }
+    }
 
-            selectedImageData = imageData
+    /// Entry point for photos taken with the in-app camera.
+    func scan(imageData: Data) async {
+        isScanning = true
+        result = nil
+        selectedImageData = nil
+        await process(imageData: imageData)
+    }
+
+    private func process(imageData: Data) async {
+        selectedImageData = imageData
+        do {
             let detection = try await detector.detect(imageData: imageData)
             result = detection
             message = detection.summary
         } catch {
+            selectedImageData = nil
             message = "We couldn't process that photo. Please try another one."
         }
-
         isScanning = false
     }
 }
