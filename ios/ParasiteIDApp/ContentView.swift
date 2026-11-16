@@ -5,6 +5,7 @@ import UIKit
 struct ContentView: View {
     @StateObject private var viewModel = ScanViewModel()
     @State private var selectedPhoto: PhotosPickerItem?
+    @State private var showingCamera = false
 
     var body: some View {
         NavigationStack {
@@ -39,11 +40,21 @@ struct ContentView: View {
                     resultCard(result)
                 }
 
+                Button {
+                    showingCamera = true
+                } label: {
+                    Label("Take a photo", systemImage: "camera")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.teal)
+                .disabled(viewModel.isScanning)
+
                 PhotosPicker(selection: $selectedPhoto, matching: .images) {
                     Label("Choose a close-up photo", systemImage: "photo")
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(.bordered)
                 .tint(.teal)
                 .disabled(viewModel.isScanning)
 
@@ -60,6 +71,11 @@ struct ContentView: View {
             .padding()
             .navigationTitle("ParasiteID")
             .navigationBarTitleDisplayMode(.inline)
+            .fullScreenCover(isPresented: $showingCamera) {
+                CameraView { data in
+                    Task { await viewModel.scan(imageData: data) }
+                }
+            }
             .onChange(of: selectedPhoto) { _, photo in
                 guard let photo else { return }
                 Task { await viewModel.scan(photo: photo) }
