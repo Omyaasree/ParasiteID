@@ -1,0 +1,1 @@
+TFLite conversion failed: ERROR_NEEDS_FLEX_OPS ('tf.Mul'/'tf.Conv2D'/'tf.Sigmoid' ops are neither custom nor flex ops). The production .keras model contains ops the default converter cannot lower; baseline/ticket models converted fine.
