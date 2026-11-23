@@ -3,11 +3,11 @@ import Combine
 import PhotosUI
 import SwiftUI
 
-protocol ImageDetector {
+protocol ImageDetector: Sendable {
     func detect(imageData: Data) async throws -> DetectionResult
 }
 
-/// Keeps the photo selection flow usable until the Core ML model is integrated.
+/// Fixed-score detector for SwiftUI previews and tests. The app uses `CoreMLImageDetector`.
 struct MockImageDetector: ImageDetector {
     func detect(imageData: Data) async throws -> DetectionResult {
         DetectionResult(
@@ -28,7 +28,7 @@ final class ScanViewModel: ObservableObject {
     private let detector: any ImageDetector
 
     init(detector: (any ImageDetector)? = nil) {
-        self.detector = detector ?? MockImageDetector()
+        self.detector = detector ?? CoreMLImageDetector()
     }
 
     func scan(photo: PhotosPickerItem) async {
@@ -65,7 +65,8 @@ final class ScanViewModel: ObservableObject {
             message = detection.summary
         } catch {
             selectedImageData = nil
-            message = "We couldn't process that photo. Please try another one."
+            message = (error as? LocalizedError)?.errorDescription
+                ?? "We couldn't process that photo. Please try another one."
         }
         isScanning = false
     }
