@@ -23,6 +23,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Verify the Core ML model matches its checkpoint
+        working-directory: ${{ github.workspace }}
+        run: |
+          python3 -m pip install --quiet --upgrade --user numpy h5py pillow
+          python3 tools/verify_coreml_model.py \
+            EfficientNetB0.keras ios/ParasiteIDApp/ParasiteNits.mlpackage
+
       - name: Show Xcode and available simulators
         run: |
           xcodebuild -version
@@ -44,7 +51,7 @@ jobs:
             echo "has_tests=true" >> "$GITHUB_OUTPUT"
           else
             echo "has_tests=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::No test target yet - skipping tests. Add a unit test target in Xcode and tests will run automatically."
+            echo "::error::ParasiteIDAppTests has gone missing from the project - the model and the decision band are no longer covered."
           fi
 
       - name: Test
