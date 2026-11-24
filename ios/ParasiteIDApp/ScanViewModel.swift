@@ -8,13 +8,14 @@ protocol ImageDetector: Sendable {
 }
 
 /// Fixed-score detector for SwiftUI previews and tests. The app uses `CoreMLImageDetector`.
+///
+/// The score is routed through `CoreMLImageDetector.result(forProbability:)` so previews and
+/// tests exercise the same banding and copy the device does.
 struct MockImageDetector: ImageDetector {
+    var probability: Double = 0.87
+
     func detect(imageData: Data) async throws -> DetectionResult {
-        DetectionResult(
-            label: "Demo only",
-            confidence: 0.87,
-            summary: "Demo result with a placeholder score. Model inference is not connected yet."
-        )
+        CoreMLImageDetector.result(forProbability: probability)
     }
 }
 

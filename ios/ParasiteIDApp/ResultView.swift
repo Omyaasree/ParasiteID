@@ -14,15 +14,31 @@ struct ResultView: View {
 
     private var image: UIImage? { imageData.flatMap(UIImage.init(data:)) }
 
+    /// Green reads as "all clear" and amber as "look again", so the ring follows the outcome
+    /// rather than the score. A high score is not good news.
+    private var ringColor: Color {
+        switch result.outcome {
+        case .nits:   Color(red: 0.85, green: 0.33, blue: 0.10)
+        case .unsure: Color(red: 0.62, green: 0.62, blue: 0.64)
+        case .other:  Color(red: 0.40, green: 0.69, blue: 0.20)
+        }
+    }
+
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                ConfidenceRing(progress: progress)
+                ConfidenceRing(progress: progress, color: ringColor)
                     .frame(width: 230, height: 230)
                     .padding(.top, 56)
 
-                Text("chance of nits.")
-                    .font(.system(.title2, design: .rounded).weight(.heavy))
+                VStack(spacing: 4) {
+                    Text(result.label)
+                        .font(.system(.title, design: .rounded).weight(.heavy))
+                        .multilineTextAlignment(.center)
+                    Text("chance of nits")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
 
                 actionButtons
 
@@ -35,12 +51,7 @@ struct ResultView: View {
                     Text(result.summary)
                         .foregroundStyle(.secondary)
 
-                    Text("Treatment")
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
-                        .padding(.top, 8)
-                    Text(Self.treatmentText)
-                        .foregroundStyle(.secondary)
+                    nextStep
 
                     Text("Screening aid only — not a medical diagnosis. Ask a pharmacist or doctor to confirm.")
                         .font(.footnote)
@@ -65,6 +76,35 @@ struct ResultView: View {
     }
 
     // MARK: - Pieces
+
+    /// Treatment advice is shown **only** for a nits result. Printing it under a low score,
+    /// or under a score the model is not sure about, reads as a recommendation to treat.
+    @ViewBuilder
+    private var nextStep: some View {
+        switch result.outcome {
+        case .nits:
+            Text("Treatment")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+                .padding(.top, 8)
+            Text(Self.treatmentText)
+                .foregroundStyle(.secondary)
+        case .unsure:
+            Text("What to do")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+                .padding(.top, 8)
+            Text(Self.retakeText)
+                .foregroundStyle(.secondary)
+        case .other:
+            Text("What this does not rule out")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+                .padding(.top, 8)
+            Text(Self.negativeText)
+                .foregroundStyle(.secondary)
+        }
+    }
 
     private var backButton: some View {
         Button { dismiss() } label: {
@@ -92,7 +132,7 @@ struct ResultView: View {
             if let image {
                 ShareLink(
                     item: Image(uiImage: image),
-                    message: Text("\(Int((result.confidence * 100).rounded()))% chance of nits (screening aid, not a diagnosis)"),
+                    message: Text("\(result.label) — \(Int((result.confidence * 100).rounded()))% chance of nits (screening aid, not a diagnosis)"),
                     preview: SharePreview("Scan result", image: Image(uiImage: image))
                 ) {
                     circleIcon("square.and.arrow.up")
@@ -138,19 +178,42 @@ struct ResultView: View {
 
     /// Placeholder guidance until reviewed copy is provided.
     private static let treatmentText = """
-    If nits are confirmed, check the whole household with a fine-toothed comb on damp hair. \
-    Over-the-counter lice treatments (such as permethrin 1%) are commonly used — follow the \
-    package directions exactly and repeat as directed, usually after 7–10 days. Wash bedding, \
-    hats and towels in hot water and dry on high heat. Ask a pharmacist or doctor if \
-    treatment doesn't work or for children under 2.
+    Confirm first: comb damp hair with a fine-toothed nit comb and look at what comes out. \
+    If nits are confirmed, check the whole household. Over-the-counter lice treatments (such \
+    as permethrin 1%) are commonly used — follow the package directions exactly and repeat as \
+    directed, usually after 7–10 days. Wash bedding, hats and towels in hot water and dry on \
+    high heat. Ask a pharmacist or doctor if treatment doesn't work, or for children under 2.
+    """
+
+    private static let retakeText = """
+    Take another photo: get the camera close to the scalp, part the hair so the roots are \
+    visible, hold steady, and use bright even light. If repeated close-up photos keep landing \
+    here, comb damp hair with a fine-toothed comb and ask a pharmacist or doctor rather than \
+    relying on the app.
+    """
+
+    private static let negativeText = """
+    The model only separates nits from a narrow "other" group, so a low score is not a clean \
+    bill of health. It cannot rule out live lice, an early infestation with few eggs, or \
+    anything outside its training. If there is itching or you can see something moving, comb \
+    damp hair with a fine-toothed comb and ask a pharmacist or doctor.
     """
 }
 
-#Preview {
+#Preview("Nits likely") {
     NavigationStack {
-        ResultView(
-            result: DetectionResult(label: "Demo", confidence: 0.87, summary: "Demo result — model inference is not connected yet."),
-            imageData: nil
-        )
+        ResultView(result: CoreMLImageDetector.result(forProbability: 0.91), imageData: nil)
+    }
+}
+
+#Preview("Not sure") {
+    NavigationStack {
+        ResultView(result: CoreMLImageDetector.result(forProbability: 0.52), imageData: nil)
+    }
+}
+
+#Preview("No nits detected") {
+    NavigationStack {
+        ResultView(result: CoreMLImageDetector.result(forProbability: 0.08), imageData: nil)
     }
 }

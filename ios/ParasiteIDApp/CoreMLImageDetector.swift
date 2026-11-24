@@ -27,8 +27,17 @@ import UIKit
 /// does the channel conversion; do not pre-divide by 255.
 actor CoreMLImageDetector: ImageDetector {
 
-    /// P(nits) at or above this is reported as "Nits detected". Matches the training notebook.
+    /// The notebook's decision threshold. A score at or above this leans nits.
     nonisolated static let threshold = 0.5
+
+    /// Half-width of the "not sure" band around `threshold`: scores in 0.40 ..< 0.60 are
+    /// reported as `.unsure` rather than being forced into a class.
+    ///
+    /// Sized from the measured Keras-to-Core ML fp16 drift, which reached 0.034 in probability
+    /// over 191 images. 0.10 is roughly three times that, so a photo whose class would flip
+    /// between the notebook and the device falls inside the band instead of being asserted.
+    /// It also catches the out-of-distribution photos the narrow "other" class cannot model.
+    nonisolated static let unsureMargin = 0.10
 
     /// Side length the model expects. The `.mlpackage` input is a fixed 224x224 RGB image.
     private nonisolated static let inputSide = 224
@@ -71,28 +80,50 @@ actor CoreMLImageDetector: ImageDetector {
     /// `confidence` stays **P(nits)**, not "confidence in the stated label", because
     /// `ResultView`/`ConfidenceRing` render it as "chance of nits".
     nonisolated static func result(forProbability probability: Double) -> DetectionResult {
-        let isNits = probability >= threshold
-        let percent = Int((probability * 100).rounded())
+        let p = min(max(probability, 0), 1)
+        let percent = Int((p * 100).rounded())
 
+        let outcome: DetectionResult.Outcome
+        if p >= threshold + unsureMargin {
+            outcome = .nits
+        } else if p < threshold - unsureMargin {
+            outcome = .other
+        } else {
+            outcome = .unsure
+        }
+
+        let label: String
         let summary: String
-        if isNits {
+
+        switch outcome {
+        case .nits:
+            label = "Nits likely"
             summary = """
             The model scored this photo \(percent)% towards nits. That is an estimate from one \
-            image, not a count of eggs and not a diagnosis.
+            image, not a count of eggs and not a diagnosis. Have it confirmed by combing damp \
+            hair or by a pharmacist or doctor before starting treatment.
             """
-        } else {
+        case .unsure:
+            label = "Not sure"
             summary = """
-            The model scored this photo \(percent)% towards nits, below the \
-            \(Int(threshold * 100))% mark. "No nits detected" only means the photo fell into the \
-            model's broad "other" class — it does not say what else is there.
+            The model scored this photo \(percent)%, inside the band around its \
+            \(Int(threshold * 100))% decision line where it is not reliable. This happens with \
+            blurry or distant photos, poor lighting, and anything the model was not trained on. \
+            Take another close-up in good light, and treat this as no answer rather than a \
+            negative one.
+            """
+        case .other:
+            label = "No nits detected"
+            summary = """
+            The model scored this photo \(percent)% towards nits, below the band around its \
+            \(Int(threshold * 100))% decision line. "No nits detected" only means the photo fell \
+            into the model's broad "other" class, which was learned from dandruff, healthy scalp \
+            and a small number of lice photos — it does not say what else is there, and it is \
+            not a clear result for anything the model has not seen.
             """
         }
 
-        return DetectionResult(
-            label: isNits ? "Nits detected" : "No nits detected",
-            confidence: probability,
-            summary: summary
-        )
+        return DetectionResult(outcome: outcome, label: label, confidence: p, summary: summary)
     }
 
     // MARK: - Model loading
