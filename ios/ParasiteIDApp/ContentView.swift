@@ -6,6 +6,7 @@ struct ContentView: View {
     @StateObject private var viewModel = ScanViewModel()
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var showingCamera = false
+    @State private var showingResult = false
 
     var body: some View {
         NavigationStack {
@@ -34,10 +35,6 @@ struct ContentView: View {
                         .font(.body)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
-                }
-
-                if let result = viewModel.result {
-                    resultCard(result)
                 }
 
                 Button {
@@ -76,24 +73,19 @@ struct ContentView: View {
                     Task { await viewModel.scan(imageData: data) }
                 }
             }
+            .navigationDestination(isPresented: $showingResult) {
+                if let result = viewModel.result {
+                    ResultView(result: result, imageData: viewModel.selectedImageData)
+                }
+            }
+            .onChange(of: viewModel.result) { _, result in
+                if result != nil { showingResult = true }
+            }
             .onChange(of: selectedPhoto) { _, photo in
                 guard let photo else { return }
                 Task { await viewModel.scan(photo: photo) }
             }
         }
-    }
-
-    private func resultCard(_ result: DetectionResult) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(result.label).font(.headline)
-            Text(result.summary).font(.subheadline).foregroundStyle(.secondary)
-            Text("Demo flow only — no model prediction yet.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 16))
     }
 }
 

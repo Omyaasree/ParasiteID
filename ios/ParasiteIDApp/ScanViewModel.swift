@@ -12,8 +12,8 @@ struct MockImageDetector: ImageDetector {
     func detect(imageData: Data) async throws -> DetectionResult {
         DetectionResult(
             label: "Demo only",
-            confidence: 0,
-            summary: "The photo was selected successfully. Model inference is not connected yet."
+            confidence: 0.87,
+            summary: "Demo result with a placeholder score. Model inference is not connected yet."
         )
     }
 }
