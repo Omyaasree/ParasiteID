@@ -1,5 +1,6 @@
 import CoreML
 import Foundation
+import ImageIO
 import UIKit
 
 /// Runs the bundled `ParasiteNits` Core ML model (EfficientNetB0, nits vs other).
@@ -25,6 +26,8 @@ import UIKit
 /// Pixels are handed over as **RGB 0-255 with no normalisation** — the model carries its own
 /// `Rescaling` and `Normalization` layers. The `.mlpackage` declares an image input, so Core ML
 /// does the channel conversion; do not pre-divide by 255.
+///
+/// See `docs/MODEL_CARD.md` for the full contract and the measurements behind it.
 actor CoreMLImageDetector: ImageDetector {
 
     /// The notebook's decision threshold. A score at or above this leans nits.
@@ -42,6 +45,14 @@ actor CoreMLImageDetector: ImageDetector {
     /// Side length the model expects. The `.mlpackage` input is a fixed 224x224 RGB image.
     private nonisolated static let inputSide = 224
 
+    /// Longest edge the photo is decoded at before letterboxing.
+    ///
+    /// A current iPhone photo is around 4032x3024, which costs roughly 48 MB to decode as a
+    /// full bitmap for an image that is about to become 224x224. ImageIO decodes straight to
+    /// this size instead, at a fraction of the memory, and 1024 still leaves far more detail
+    /// than the model can use.
+    private nonisolated static let decodeMaxPixelSize = 1024
+
     private nonisolated static let modelName = "ParasiteNits"
     private nonisolated static let outputFeature = "nits_probability"
 
@@ -54,12 +65,17 @@ actor CoreMLImageDetector: ImageDetector {
     func detect(imageData: Data) async throws -> DetectionResult {
         let model = try loadModelIfNeeded()
 
-        guard let image = UIImage(data: imageData) else {
+        try Task.checkCancellation()
+
+        guard let image = Self.decodedImage(from: imageData) else {
             throw DetectorError.unreadableImage
         }
         guard let pixelBuffer = Self.letterboxedPixelBuffer(from: image) else {
             throw DetectorError.preprocessingFailed
         }
+
+        // The caller may have moved on to a newer photo while the old one was being decoded.
+        try Task.checkCancellation()
 
         let input = try MLDictionaryFeatureProvider(
             dictionary: ["image": MLFeatureValue(pixelBuffer: pixelBuffer)]
@@ -71,22 +87,29 @@ actor CoreMLImageDetector: ImageDetector {
             throw DetectorError.unexpectedOutput
         }
 
-        let probability = min(max(array[0].doubleValue, 0), 1)
-        return Self.result(forProbability: probability)
+        try Task.checkCancellation()
+
+        return Self.result(forScore: array[0].doubleValue, imageData: imageData)
     }
 
     // MARK: - Result mapping
 
-    /// `confidence` stays **P(nits)**, not "confidence in the stated label", because
-    /// `ResultView`/`ConfidenceRing` render it as "chance of nits".
-    nonisolated static func result(forProbability probability: Double) -> DetectionResult {
-        let p = min(max(probability, 0), 1)
-        let percent = Int((p * 100).rounded())
+    /// Builds the result from the model's raw score.
+    ///
+    /// The outcome is decided from the **rounded whole percent**, not from the underlying
+    /// double, so the number on screen and the label beside it can never disagree. Deciding on
+    /// the raw value allowed 0.496 to be rendered as "50%" under "No nits detected".
+    nonisolated static func result(forScore score: Double, imageData: Data = Data()) -> DetectionResult {
+        let clamped = min(max(score, 0), 1)
+        let percent = Int((clamped * 100).rounded())
+
+        let nitsAt = Int(((threshold + unsureMargin) * 100).rounded())   // 60
+        let otherBelow = Int(((threshold - unsureMargin) * 100).rounded()) // 40
 
         let outcome: DetectionResult.Outcome
-        if p >= threshold + unsureMargin {
+        if percent >= nitsAt {
             outcome = .nits
-        } else if p < threshold - unsureMargin {
+        } else if percent < otherBelow {
             outcome = .other
         } else {
             outcome = .unsure
@@ -123,7 +146,8 @@ actor CoreMLImageDetector: ImageDetector {
             """
         }
 
-        return DetectionResult(outcome: outcome, label: label, confidence: p, summary: summary)
+        return DetectionResult(outcome: outcome, label: label, score: clamped,
+                               percent: percent, summary: summary, imageData: imageData)
     }
 
     // MARK: - Model loading
@@ -143,7 +167,7 @@ actor CoreMLImageDetector: ImageDetector {
         do {
             loaded = try MLModel(contentsOf: url, configuration: configuration)
         } catch {
-            throw DetectorError.modelLoadFailed(error)
+            throw DetectorError.modelLoadFailed(underlying: error)
         }
         model = loaded
         return loaded
@@ -151,11 +175,26 @@ actor CoreMLImageDetector: ImageDetector {
 
     // MARK: - Preprocessing
 
+    /// Decodes `data` with its longest edge at most `decodeMaxPixelSize`, applying the EXIF
+    /// orientation so a photo written sideways by the camera arrives upright.
+    nonisolated static func decodedImage(from data: Data) -> UIImage? {
+        guard let source = CGImageSourceCreateWithData(data as CFData, nil) else { return nil }
+
+        let options: [CFString: Any] = [
+            kCGImageSourceCreateThumbnailFromImageAlways: true,
+            kCGImageSourceCreateThumbnailWithTransform: true,
+            kCGImageSourceShouldCacheImmediately: true,
+            kCGImageSourceThumbnailMaxPixelSize: decodeMaxPixelSize,
+        ]
+        guard let cgImage = CGImageSourceCreateThumbnailAtIndex(source, 0, options as CFDictionary)
+        else { return nil }
+
+        // The transform above has already been applied, so this is an upright bitmap.
+        return UIImage(cgImage: cgImage, scale: 1, orientation: .up)
+    }
+
     /// Scales `image` to fit 224x224 preserving aspect ratio and centres it on black,
     /// matching `ImageOps.pad(..., color=(0,0,0), centering=(0.5, 0.5))` from the data-prep script.
-    ///
-    /// `UIImage.draw(in:)` applies `imageOrientation`, so a photo written sideways by the camera
-    /// is uprighted here rather than being fed to the model rotated.
     nonisolated static func letterboxedPixelBuffer(from image: UIImage) -> CVPixelBuffer? {
         let side = inputSide
         let canvas = CGSize(width: side, height: side)
@@ -219,9 +258,12 @@ actor CoreMLImageDetector: ImageDetector {
 
 // MARK: - Errors
 
+/// Every case carries copy that is safe to show a user. The underlying Core ML error is kept
+/// for logging only — its text names file paths and framework internals, and it used to be
+/// rendered straight onto the scan screen.
 enum DetectorError: LocalizedError {
     case modelMissing
-    case modelLoadFailed(Error)
+    case modelLoadFailed(underlying: Error)
     case unreadableImage
     case preprocessingFailed
     case unexpectedOutput
@@ -229,15 +271,23 @@ enum DetectorError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .modelMissing:
-            "The nits model is missing from the app bundle."
-        case .modelLoadFailed(let error):
-            "The nits model could not be loaded: \(error.localizedDescription)"
+            "The nits model is missing from this build of the app."
+        case .modelLoadFailed:
+            "The nits model could not be loaded. Please reinstall the app."
         case .unreadableImage:
-            "That photo could not be read."
+            "That photo could not be read. Please choose another one."
         case .preprocessingFailed:
-            "That photo could not be prepared for analysis."
+            "That photo could not be prepared for analysis. Please try another one."
         case .unexpectedOutput:
-            "The model returned an unexpected result."
+            "The nits model returned an unexpected result."
+        }
+    }
+
+    /// Detail for logs, never for the screen.
+    var diagnosticDescription: String {
+        switch self {
+        case .modelLoadFailed(let underlying): "modelLoadFailed: \(underlying)"
+        default: String(describing: self)
         }
     }
 }

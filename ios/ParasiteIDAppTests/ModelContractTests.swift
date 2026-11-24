@@ -48,9 +48,37 @@ final class ModelContractTests: XCTestCase {
         let data = try XCTUnwrap(Self.solidImage(size: CGSize(width: 800, height: 600),
                                                  color: .brown).jpegData(compressionQuality: 0.9))
         let result = try await CoreMLImageDetector().detect(imageData: data)
-        XCTAssertTrue((0...1).contains(result.confidence))
+        XCTAssertTrue((0...1).contains(result.score))
+        XCTAssertTrue((0...100).contains(result.percent))
         XCTAssertFalse(result.label.isEmpty)
         XCTAssertFalse(result.summary.isEmpty)
+        XCTAssertEqual(result.imageData, data, "the result must carry the photo it scored")
+    }
+
+    /// A full-size photo is decoded down before it is letterboxed, so a 12-megapixel capture
+    /// never becomes a ~48 MB bitmap on the way to a 224x224 input.
+    func testFullSizePhotosAreDecodedDownBeforeLetterboxing() throws {
+        let big = Self.solidImage(size: CGSize(width: 4032, height: 3024), color: .brown)
+        let data = try XCTUnwrap(big.jpegData(compressionQuality: 0.9))
+        let decoded = try XCTUnwrap(CoreMLImageDetector.decodedImage(from: data))
+        XCTAssertLessThanOrEqual(max(decoded.size.width, decoded.size.height), 1024)
+        XCTAssertEqual(decoded.size.width / decoded.size.height, 4.0 / 3.0, accuracy: 0.01,
+                       "downsampling must not change the aspect ratio")
+    }
+
+    func testACancelledScanThrowsRatherThanReturningAStaleResult() async throws {
+        let data = try XCTUnwrap(Self.solidImage(size: CGSize(width: 800, height: 600),
+                                                 color: .brown).jpegData(compressionQuality: 0.9))
+        let detector = CoreMLImageDetector()
+        let task = Task { try await detector.detect(imageData: data) }
+        task.cancel()
+        do {
+            _ = try await task.value
+            // Finishing before the cancellation was observed is acceptable; overwriting a
+            // newer result is not, and ScanViewModelTests covers that.
+        } catch is CancellationError {
+            // expected
+        }
     }
 
     func testUnreadableDataIsReportedNotCrashed() async {

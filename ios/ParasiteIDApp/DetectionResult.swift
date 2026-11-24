@@ -1,7 +1,11 @@
 import Foundation
 
-/// A model-independent result that the scanning screen can display.
-struct DetectionResult: Identifiable, Equatable {
+/// A model-independent result that the result screen can display.
+///
+/// The analysed photo travels **with** the result rather than beside it in a second published
+/// property. Keeping them apart let a new scan replace the image while an older result was
+/// still on screen, so Save and Share could export a photo the score did not come from.
+struct DetectionResult: Identifiable, Equatable, Hashable {
     /// Which side of the decision band the score fell on.
     ///
     /// The model is a binary nits-vs-other classifier, but a bare threshold at 0.5 is not
@@ -16,7 +20,7 @@ struct DetectionResult: Identifiable, Equatable {
     ///   has never seen has no class of its own and lands wherever the sigmoid puts it.
     ///
     /// See `docs/MODEL_CARD.md` for the measurements behind the band.
-    enum Outcome: String, Equatable {
+    enum Outcome: String, Equatable, Hashable {
         case nits
         case unsure
         case other
@@ -25,8 +29,21 @@ struct DetectionResult: Identifiable, Equatable {
     let id = UUID()
     let outcome: Outcome
     let label: String
-    /// P(nits) from the model, 0.0 to 1.0. This is a raw sigmoid score, **not** a calibrated
-    /// probability and not a confidence interval. `ResultView` presents it as "chance of nits".
-    let confidence: Double
+
+    /// The model's raw sigmoid output, 0.0 to 1.0.
+    ///
+    /// This is **not** a calibrated probability and **not** a confidence interval. The screen
+    /// calls it a "model score" for that reason; `APP_PLAN.md` tracks calibrating it as open
+    /// work. Classification is decided from `percent`, not from this value, so the number the
+    /// screen shows can never contradict the label beside it.
+    let score: Double
+
+    /// `score` rounded to the whole percent the screen displays, and the value the outcome was
+    /// decided from.
+    let percent: Int
+
     let summary: String
+
+    /// The photo this score came from, as supplied to the detector.
+    let imageData: Data
 }

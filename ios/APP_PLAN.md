@@ -27,13 +27,15 @@ is **built**; see [Planned work](#planned-work) for what is not.
 
 Pushed automatically when `ScanViewModel.result` becomes non-nil.
 
-1. **Outcome and score** — `ConfidenceRing` draws P(nits) as a percentage, coloured by
-   outcome, above the result label.
+1. **Outcome and score** — `ConfidenceRing` draws the model score as a percentage, coloured
+   by outcome, above the result label and a standing "not a calibrated probability" caption.
 2. **Explanation** — the plain-language summary of what the score does and does not mean.
 3. **What to do next** — treatment guidance for a nits result, retake guidance for an unsure
    one, and what a low score does *not* rule out for a negative one. Treatment advice is shown
    only for a nits result.
-4. **Save and share**, then a back button to scan again.
+4. **Save and share** — Save writes the photo to the library (with a Settings link if access
+   is off); Share sends the **reading as text only**, never the scalp photo. Then a back
+   button to scan again, which clears the result and returns the scan screen to idle.
 
 ### Camera — `CameraView.swift` / `CameraService.swift`
 
@@ -51,16 +53,23 @@ Take a photo OR choose from library → preview → analyse on device → result
 `CoreMLImageDetector` is the implementation the app uses; `MockImageDetector` takes a fixed
 score and is used by previews and tests.
 
+Starting a scan cancels the one before it, so a slow photo cannot land on top of a newer
+result. The analysed photo travels inside `DetectionResult`, which is what Save and Share
+read — they can only ever export the photo the score came from.
+
 ## The three outcomes
 
 The model is binary, but the app reports **three** outcomes, because a bare threshold at 0.5
 is not honest about how the model fails:
 
-| P(nits) | outcome | screen says |
+| shown score | outcome | screen says |
 |---|---|---|
-| ≥ 0.60 | `.nits` | Nits likely — confirm by combing, then treatment guidance |
-| 0.40 ..< 0.60 | `.unsure` | Not sure — take another photo; this is not a negative |
-| < 0.40 | `.other` | No nits detected — and what that does not rule out |
+| ≥ 60% | `.nits` | Nits likely — confirm by combing, then treatment guidance |
+| 40% ..< 60% | `.unsure` | Not sure — take another photo; this is not a negative |
+| < 40% | `.other` | No nits detected — and what that does not rule out |
+
+The outcome is decided from the **rounded percent the screen shows**, not the raw double, so
+the ring and the label can never disagree.
 
 The band is sized from the measured fp16 conversion drift and from how narrow the "other"
 class is. [`docs/MODEL_CARD.md`](../docs/MODEL_CARD.md) records the measurements;
@@ -92,7 +101,8 @@ been checked against observed frequencies and is **not** a confidence interval. 
 
 - Decide what an interval means for this classifier, implement a defensible method, and
   validate its coverage. Do not relabel the raw probability as an interval.
-- Until then, the screen must keep saying "chance of nits" and never "we are N% confident".
+- Until then the screen says "Model score — not a calibrated probability", and must not say
+  "chance", "confidence" or "probability". `DetectionBandTests` fails if that copy slips.
 
 ### 5. Handle out-of-distribution photos — **open**
 

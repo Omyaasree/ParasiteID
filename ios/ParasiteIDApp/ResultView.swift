@@ -1,18 +1,19 @@
-import SwiftUI
 import Photos
+import SwiftUI
 
 /// Shown (pushed from the right) after a scan completes.
 struct ResultView: View {
     let result: DetectionResult
-    let imageData: Data?
 
     @Environment(\.dismiss) private var dismiss
     @State private var progress = 0.0
     @State private var saveState: SaveState = .idle
 
-    private enum SaveState { case idle, saved, failed }
+    /// `.saving` exists so the button can be disabled while a save is in flight — tapping it
+    /// twice quickly used to add the photo to the library twice.
+    private enum SaveState: Equatable { case idle, saving, saved, denied, failed }
 
-    private var image: UIImage? { imageData.flatMap(UIImage.init(data:)) }
+    private var image: UIImage? { UIImage(data: result.imageData) }
 
     /// Green reads as "all clear" and amber as "look again", so the ring follows the outcome
     /// rather than the score. A high score is not good news.
@@ -27,7 +28,7 @@ struct ResultView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                ConfidenceRing(progress: progress, color: ringColor)
+                ConfidenceRing(percent: result.percent, color: ringColor, progress: progress)
                     .frame(width: 230, height: 230)
                     .padding(.top, 56)
 
@@ -35,9 +36,12 @@ struct ResultView: View {
                     Text(result.label)
                         .font(.system(.title, design: .rounded).weight(.heavy))
                         .multilineTextAlignment(.center)
-                    Text("chance of nits")
-                        .font(.subheadline)
+                    // Not "confidence" and not "chance": the model emits an uncalibrated
+                    // sigmoid, and APP_PLAN.md step 4 tracks calibrating it as open work.
+                    Text("Model score — not a calibrated probability")
+                        .font(.footnote)
                         .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
                 }
 
                 actionButtons
@@ -70,7 +74,7 @@ struct ResultView: View {
             // Fill the arc once the page has slid in.
             try? await Task.sleep(for: .milliseconds(350))
             withAnimation(.easeOut(duration: 1.2)) {
-                progress = min(max(result.confidence, 0), 1)
+                progress = min(max(result.score, 0), 1)
             }
         }
     }
@@ -120,35 +124,55 @@ struct ResultView: View {
     }
 
     private var actionButtons: some View {
-        HStack(spacing: 40) {
-            Button {
-                Task { await save() }
-            } label: {
-                circleIcon(saveState == .saved ? "checkmark" : "square.and.arrow.down")
-            }
-            .disabled(imageData == nil || saveState == .saved)
-            .accessibilityLabel(saveState == .saved ? "Saved to Photos" : "Save photo")
+        VStack(spacing: 12) {
+            HStack(spacing: 40) {
+                Button {
+                    Task { await save() }
+                } label: {
+                    circleIcon(saveState == .saved ? "checkmark" : "square.and.arrow.down")
+                }
+                .disabled(saveState == .saving || saveState == .saved)
+                .accessibilityLabel(saveState == .saved ? "Saved to Photos" : "Save photo")
 
-            if let image {
-                ShareLink(
-                    item: Image(uiImage: image),
-                    message: Text("\(result.label) — \(Int((result.confidence * 100).rounded()))% chance of nits (screening aid, not a diagnosis)"),
-                    preview: SharePreview("Scan result", image: Image(uiImage: image))
-                ) {
+                // Text only. Sharing a photo of someone's scalp is a bigger step than sharing
+                // the reading, so the photo is not attached; Save keeps it on this device.
+                ShareLink(item: Self.shareText(for: result)) {
                     circleIcon("square.and.arrow.up")
                 }
-                .accessibilityLabel("Share")
+                .accessibilityLabel("Share result text")
             }
+
+            saveStatus
         }
-        .overlay(alignment: .bottom) {
-            if saveState == .failed {
-                Text("Couldn't save. Allow Photos access in Settings.")
+    }
+
+    @ViewBuilder
+    private var saveStatus: some View {
+        switch saveState {
+        case .denied:
+            VStack(spacing: 6) {
+                Text("ParasiteID can't add photos to your library.")
                     .font(.caption)
-                    .foregroundStyle(.red)
-                    .offset(y: 28)
+                    .foregroundStyle(.secondary)
+                Button("Open Settings") {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                    saveState = .idle
+                }
+                .font(.caption.weight(.semibold))
             }
+        case .failed:
+            Button("Couldn't save. Tap to try again.") { saveState = .idle }
+                .font(.caption)
+                .foregroundStyle(.red)
+        case .saved:
+            Text("Saved to Photos")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        case .idle, .saving:
+            EmptyView()
         }
-        .padding(.bottom, saveState == .failed ? 24 : 0)
     }
 
     private func circleIcon(_ name: String) -> some View {
@@ -157,23 +181,32 @@ struct ResultView: View {
             .foregroundStyle(.white)
             .frame(width: 64, height: 64)
             .background(.black, in: Circle())
+            .opacity(saveState == .saving ? 0.5 : 1)
     }
 
     private func save() async {
-        guard let imageData else { return }
+        guard saveState != .saving, saveState != .saved else { return }
+        saveState = .saving
+
         let status = await PHPhotoLibrary.requestAuthorization(for: .addOnly)
         guard status == .authorized || status == .limited else {
-            saveState = .failed
+            saveState = .denied
             return
         }
         do {
+            let data = result.imageData
             try await PHPhotoLibrary.shared().performChanges {
-                PHAssetCreationRequest.forAsset().addResource(with: .photo, data: imageData, options: nil)
+                PHAssetCreationRequest.forAsset().addResource(with: .photo, data: data, options: nil)
             }
             saveState = .saved
         } catch {
             saveState = .failed
         }
+    }
+
+    static func shareText(for result: DetectionResult) -> String {
+        "ParasiteID: \(result.label) — model score \(result.percent)%. "
+        + "A screening aid, not a diagnosis."
     }
 
     /// Placeholder guidance until reviewed copy is provided.
@@ -201,19 +234,13 @@ struct ResultView: View {
 }
 
 #Preview("Nits likely") {
-    NavigationStack {
-        ResultView(result: CoreMLImageDetector.result(forProbability: 0.91), imageData: nil)
-    }
+    NavigationStack { ResultView(result: CoreMLImageDetector.result(forScore: 0.91)) }
 }
 
 #Preview("Not sure") {
-    NavigationStack {
-        ResultView(result: CoreMLImageDetector.result(forProbability: 0.52), imageData: nil)
-    }
+    NavigationStack { ResultView(result: CoreMLImageDetector.result(forScore: 0.52)) }
 }
 
 #Preview("No nits detected") {
-    NavigationStack {
-        ResultView(result: CoreMLImageDetector.result(forProbability: 0.08), imageData: nil)
-    }
+    NavigationStack { ResultView(result: CoreMLImageDetector.result(forScore: 0.08)) }
 }

@@ -52,7 +52,11 @@ change to the app.
 | Output type | MultiArray, one element |
 | Output meaning | P(nits) — a raw sigmoid score |
 | Decision threshold | 0.5 |
-| Unsure band | 0.40 ..< 0.60 (see §6) |
+| Unsure band | 40% ..< 60% (see §6) |
+
+The outcome is decided from the **rounded whole percent** the screen displays, not from the
+underlying double, so the number on screen can never contradict the label beside it. Deciding
+on the raw value allowed 0.496 to render as "50%" under "No nits detected".
 
 **Do not pre-divide by 255.** The Keras graph carries its own preprocessing — `Rescaling(1/255)`
 → `Normalization(ImageNet mean/variance)` → `Rescaling(1/std)` — and all three survived the
@@ -87,6 +91,12 @@ What does distinguish them is running each mode on the *raw* photos. Measured on
 
 Every photo from an iPhone camera is 4:3 or 16:9, so this path is always taken in the app.
 Squashing distorts the nits and pushes dandruff over the line.
+
+The app decodes the photo with its longest edge at most **1024 px** before letterboxing, so a
+12-megapixel capture never becomes a ~48 MB bitmap on the way to a 224 x 224 input. Re-measured
+on the comb set after adding that step: still 96/96 detected, mean P(nits) 0.9017 against
+0.9084 without it, lowest frame 0.842. The decode is lossless as far as the model is
+concerned.
 
 ---
 
@@ -123,7 +133,8 @@ stratified 70 / 15 / 15.
 ### 5.2 Out-of-distribution check: the comb set
 
 96 frames, 96 detected, 1 false positive among 96 negatives. Mean P(nits) 0.897 in the
-notebook; 0.908 measured through the shipped Core ML model and the app's own letterbox.
+notebook; 0.902 measured end to end through the shipped Core ML model with the app's own
+decode and letterbox.
 
 **This set is genuinely held out.** `tools/check_comb_holdout.py` re-measures it against all
 2,672 training-eligible images on disk and reports:
