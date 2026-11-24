@@ -2,78 +2,129 @@
 
 ## Purpose
 
-ParasiteID is a mobile screening aid for checking a close-up scalp photo for nits. The app is intended to provide an informational result, not a medical diagnosis.
+ParasiteID is a mobile screening aid for checking a close-up scalp photo for nits. The app is
+intended to provide an informational result, not a medical diagnosis.
 
 ## Current app layout
 
-The current implementation has one main screen, built in SwiftUI. The planned experience expands it into a scan screen and a separate results screen:
+Two screens, built in SwiftUI, pushed inside a `NavigationStack`. This section describes what
+is **built**; see [Planned work](#planned-work) for what is not.
 
-### Scan screen
+### Scan screen — `ContentView.swift`
 
-1. **Intro and guidance** — explains that the app screens a close-up scalp photo and is not a medical diagnosis.
-2. **One primary scan button** — opens a native iOS action sheet with two choices: **Take Photo** and **Choose from Library**, plus Cancel. This keeps the screen simple while supporting both ways of providing an image.
-3. **Photo preview and status** — after a photo is captured or selected, show its preview and a clear loading state while it is analyzed. Provide a way to retake or choose a different photo.
+1. **Intro and guidance** — a title, a status line driven by `ScanViewModel.message`, and a
+   standing footnote that the app is a screening aid and not a medical diagnosis.
+2. **Two capture buttons** — a prominent **Take a photo**, which presents `CameraView` as a
+   full-screen cover, and a bordered **Choose a close-up photo**, which is a `PhotosPicker`.
+   Both are disabled while a scan is running.
+   *(An earlier draft of this document called for a single button opening an action sheet.
+   Two explicit buttons were built instead: one tap instead of two, and the labels say what
+   each one does.)*
+3. **Photo preview and status** — the selected image is shown above the buttons, with a
+   `ProgressView` while it is being prepared.
 
-### Results screen
+### Result screen — `ResultView.swift`
 
-After analysis, navigate to a dedicated results page containing:
+Pushed automatically when `ScanViewModel.result` becomes non-nil.
 
-1. **Classification** — **Nits detected** or **No nits detected**. “No nits detected” means the image fell into the model’s broad “other” class; it does not identify which other condition is present.
-2. **Confidence interval** — show the estimate and interval in clear language, with an explanation that the result is uncertain and is not a diagnosis.
-3. **Next actions** — let the user scan another photo or return to the scan screen.
+1. **Outcome and score** — `ConfidenceRing` draws P(nits) as a percentage, coloured by
+   outcome, above the result label.
+2. **Explanation** — the plain-language summary of what the score does and does not mean.
+3. **What to do next** — treatment guidance for a nits result, retake guidance for an unsure
+   one, and what a low score does *not* rule out for a negative one. Treatment advice is shown
+   only for a nits result.
+4. **Save and share**, then a back button to scan again.
 
-The exact wording and presentation of the interval should be settled with the model evaluation work. A raw sigmoid score is not, by itself, a statistically valid confidence interval; the team needs to define and validate how the interval is estimated before displaying one.
+### Camera — `CameraView.swift` / `CameraService.swift`
 
-The screen is implemented in `ParasiteIDApp/ContentView.swift`. `ScanViewModel.swift` loads the selected photo, tracks progress and status, and calls the detector. `DetectionResult.swift` defines the model-independent result shown by the screen.
+An `AVCaptureSession` wrapper with continuous autofocus for close-ups, handling the
+permission-denied, unavailable and failed states.
 
 ## Current scan flow
 
 ```text
-Open scan choices → take a photo OR choose from library → preview → analyze → show results page or a recoverable error
+Take a photo OR choose from library → preview → analyse on device → result screen
+                                                                   ↘ recoverable error message
 ```
 
-`ImageDetector` is the handoff point between the app and its image model. The current `MockImageDetector` confirms that the selection flow works, but it does not analyze the photo.
+`ImageDetector` is the handoff point between the app and its image model.
+`CoreMLImageDetector` is the implementation the app uses; `MockImageDetector` takes a fixed
+score and is used by previews and tests.
+
+## The three outcomes
+
+The model is binary, but the app reports **three** outcomes, because a bare threshold at 0.5
+is not honest about how the model fails:
+
+| P(nits) | outcome | screen says |
+|---|---|---|
+| ≥ 0.60 | `.nits` | Nits likely — confirm by combing, then treatment guidance |
+| 0.40 ..< 0.60 | `.unsure` | Not sure — take another photo; this is not a negative |
+| < 0.40 | `.other` | No nits detected — and what that does not rule out |
+
+The band is sized from the measured fp16 conversion drift and from how narrow the "other"
+class is. [`docs/MODEL_CARD.md`](../docs/MODEL_CARD.md) records the measurements;
+`ParasiteIDAppTests/DetectionBandTests.swift` locks the boundaries down.
 
 ## Planned work
 
-### 1. Build the scan and results screens
+### 1. Build the scan and result screens — **done**
 
-- Replace the single photo-library picker button with one scan button that opens a native choice sheet for **Take Photo** or **Choose from Library**.
-- Add camera capture and retain the existing photo-library selection flow.
-- Show a preview, loading state, recoverable errors, and a clear retake/choose-another action.
-- Navigate to a separate results page with classification, confidence interval, explanation, and a scan-again action.
-- Keep both screens accessible and make the non-diagnostic limitation visible.
+Camera capture, photo-library selection, preview, loading state, recoverable errors, a
+separate result screen, and a scan-again action are all in place.
 
-### 2. Prepare an iOS model
+### 2. Prepare an iOS model — **done**
 
-- The Python notebook currently compares image classifiers for **nits versus other**; it does not classify four separate conditions.
-- Select a model based on useful evaluation results, including performance on the held-out comb photos.
-- Export the chosen model to Core ML and record its expected input size, image normalization, output meaning, and decision threshold.
-- Decide what “confidence interval” means for this classifier and implement a statistically defensible method. Validate its coverage and communicate its limits; do not relabel a raw model probability as an interval.
+EfficientNetB0 trained for nits versus other, exported to Core ML. Its input size, pixel
+range, output meaning, preprocessing and decision threshold are recorded in
+[`docs/MODEL_CARD.md`](../docs/MODEL_CARD.md) and asserted by `ModelContractTests.swift`.
 
-### 3. Connect model inference
+### 3. Connect model inference — **done**
 
-- Implement a Core ML detector behind `ImageDetector` so the screen stays independent of model details.
-- Match the notebook’s preprocessing in the app and translate model output into `DetectionResult`.
-- Extend `DetectionResult` to carry the validated uncertainty estimate and interval needed by the results screen.
-- Replace the demo copy with carefully worded binary screening results and clear uncertainty messaging.
+`CoreMLImageDetector` runs the bundled `ParasiteNits` model on device, letterboxing the photo
+to 224 × 224 on black to match training. `DetectionResult` carries the outcome, the raw score
+and the copy for the screen.
 
-### 4. Validate the full experience
+### 4. Calibrate the score — **open**
 
-- Check the flow with representative photos on an iPhone and simulator where appropriate.
-- Review model behavior on images that differ from the training set before presenting predictions as useful guidance.
-- Keep the privacy behavior for selected images explicit and avoid retaining images unless the product requires it.
+`DetectionResult.confidence` is a raw sigmoid output presented as "chance of nits". It has not
+been checked against observed frequencies and is **not** a confidence interval. Work needed:
+
+- Decide what an interval means for this classifier, implement a defensible method, and
+  validate its coverage. Do not relabel the raw probability as an interval.
+- Until then, the screen must keep saying "chance of nits" and never "we are N% confident".
+
+### 5. Handle out-of-distribution photos — **open**
+
+The unsure band is a mitigation, not a solution. The model has no class for a blurry frame, a
+distant shot, an unrelated object, or a condition outside its training — including live lice,
+which are represented by five photos inside "other". Work needed:
+
+- A blur or sharpness gate before inference.
+- A decision on whether to add a rejection class or a second "is this a scalp?" model.
+- Review model behaviour on deliberately out-of-distribution photos and record the results.
+
+### 6. Validate on real hardware — **open**
+
+Everything measured so far comes from the simulator or from Python. Work needed:
+
+- Run the flow on a physical iPhone with representative photos, in real lighting.
+- Measure inference latency and memory on device.
+- Keep the privacy behaviour explicit: images stay on device and are not retained unless the
+  user taps Save.
 
 ## Working boundaries
 
-- **UI work** can continue independently using `MockImageDetector`.
+- **UI work** can continue independently using `MockImageDetector(probability:)`.
 - **Model work** can continue in the Python training workflow.
 - Both meet at `ImageDetector.detect(imageData:) async throws -> DetectionResult`.
-- The Core ML integration should preserve that interface unless the model requires a deliberate change.
+- A new model must keep the contract in `docs/MODEL_CARD.md` §2, or update that file,
+  `CoreMLImageDetector` and `ModelContractTests` together.
 
 ## Open decisions
 
-- Which trained architecture and threshold should the app use?
-- What method will produce a calibrated confidence interval for each classification, and how will its limits be explained to users?
-- What result wording is understandable without overstating model certainty?
+- What method will produce a calibrated confidence interval, and how will its limits be
+  explained to users?
+- Should the unsure band stay at ±0.10, or be set from a calibration curve once one exists?
+- Is the treatment copy on the result screen reviewed and approved for use?
 - Should scan history exist, and if so, what should be stored on the device?
