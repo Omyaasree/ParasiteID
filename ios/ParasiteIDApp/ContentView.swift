@@ -1,19 +1,18 @@
-import SwiftUI
 import PhotosUI
+import SwiftUI
 import UIKit
 
 struct ContentView: View {
     @StateObject private var viewModel = ScanViewModel()
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var showingCamera = false
-    @State private var showingResult = false
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 24) {
                 Spacer()
 
-                if let data = viewModel.selectedImageData,
+                if let data = viewModel.previewImageData,
                    let image = UIImage(data: data) {
                     Image(uiImage: image)
                         .resizable()
@@ -70,20 +69,20 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.inline)
             .fullScreenCover(isPresented: $showingCamera) {
                 CameraView { data in
-                    Task { await viewModel.scan(imageData: data) }
+                    viewModel.scan(imageData: data)
                 }
             }
-            .navigationDestination(isPresented: $showingResult) {
-                if let result = viewModel.result {
-                    ResultView(result: result, imageData: viewModel.selectedImageData)
-                }
-            }
-            .onChange(of: viewModel.result) { _, result in
-                if result != nil { showingResult = true }
+            // Driven by the result itself rather than a parallel Bool, so the screen cannot be
+            // pushed with nothing to show. Dismissing it writes nil back and returns here.
+            .navigationDestination(item: $viewModel.result) { result in
+                ResultView(result: result)
             }
             .onChange(of: selectedPhoto) { _, photo in
                 guard let photo else { return }
-                Task { await viewModel.scan(photo: photo) }
+                viewModel.scan(photo: photo)
+                // Clear the selection so picking the same photo again - to retry after an
+                // error - still fires this handler.
+                selectedPhoto = nil
             }
         }
     }

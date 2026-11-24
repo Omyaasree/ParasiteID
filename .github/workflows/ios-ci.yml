@@ -23,6 +23,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Pinned: the runner's default python has no prebuilt h5py wheel, so pip falls back to
+      # building it from source and fails looking for libhdf5.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify the Core ML model matches its checkpoint
+        working-directory: ${{ github.workspace }}
+        run: |
+          python -m pip install --quiet --upgrade pip
+          python -m pip install --quiet numpy h5py
+          python tools/verify_coreml_model.py \
+            EfficientNetB0.keras ios/ParasiteIDApp/ParasiteNits.mlpackage
+
       - name: Show Xcode and available simulators
         run: |
           xcodebuild -version
@@ -44,7 +58,7 @@ jobs:
             echo "has_tests=true" >> "$GITHUB_OUTPUT"
           else
             echo "has_tests=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::No test target yet - skipping tests. Add a unit test target in Xcode and tests will run automatically."
+            echo "::error::ParasiteIDAppTests has gone missing from the project - the model and the decision band are no longer covered."
           fi
 
       - name: Test

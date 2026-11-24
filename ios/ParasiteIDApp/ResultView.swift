@@ -1,28 +1,48 @@
-import SwiftUI
 import Photos
+import SwiftUI
 
 /// Shown (pushed from the right) after a scan completes.
 struct ResultView: View {
     let result: DetectionResult
-    let imageData: Data?
 
     @Environment(\.dismiss) private var dismiss
     @State private var progress = 0.0
     @State private var saveState: SaveState = .idle
 
-    private enum SaveState { case idle, saved, failed }
+    /// `.saving` exists so the button can be disabled while a save is in flight — tapping it
+    /// twice quickly used to add the photo to the library twice.
+    private enum SaveState: Equatable { case idle, saving, saved, denied, failed }
 
-    private var image: UIImage? { imageData.flatMap(UIImage.init(data:)) }
+    private var image: UIImage? { UIImage(data: result.imageData) }
+
+    /// Green reads as "all clear" and amber as "look again", so the ring follows the outcome
+    /// rather than the score. A high score is not good news.
+    private var ringColor: Color {
+        switch result.outcome {
+        case .nits:   Color(red: 0.85, green: 0.33, blue: 0.10)
+        case .unsure: Color(red: 0.62, green: 0.62, blue: 0.64)
+        case .other:  Color(red: 0.40, green: 0.69, blue: 0.20)
+        }
+    }
 
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                ConfidenceRing(progress: progress)
+                ConfidenceRing(percent: result.percent, color: ringColor, progress: progress)
                     .frame(width: 230, height: 230)
                     .padding(.top, 56)
 
-                Text("chance of nits.")
-                    .font(.system(.title2, design: .rounded).weight(.heavy))
+                VStack(spacing: 4) {
+                    Text(result.label)
+                        .font(.system(.title, design: .rounded).weight(.heavy))
+                        .multilineTextAlignment(.center)
+                    // Not "confidence" and not "chance": the model emits an uncalibrated
+                    // sigmoid, and APP_PLAN.md step 4 tracks calibrating it as open work.
+                    Text("Model score — not a calibrated probability")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                }
 
                 actionButtons
 
@@ -35,12 +55,7 @@ struct ResultView: View {
                     Text(result.summary)
                         .foregroundStyle(.secondary)
 
-                    Text("Treatment")
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
-                        .padding(.top, 8)
-                    Text(Self.treatmentText)
-                        .foregroundStyle(.secondary)
+                    nextStep
 
                     Text("Screening aid only — not a medical diagnosis. Ask a pharmacist or doctor to confirm.")
                         .font(.footnote)
@@ -59,12 +74,41 @@ struct ResultView: View {
             // Fill the arc once the page has slid in.
             try? await Task.sleep(for: .milliseconds(350))
             withAnimation(.easeOut(duration: 1.2)) {
-                progress = min(max(result.confidence, 0), 1)
+                progress = min(max(result.score, 0), 1)
             }
         }
     }
 
     // MARK: - Pieces
+
+    /// Treatment advice is shown **only** for a nits result. Printing it under a low score,
+    /// or under a score the model is not sure about, reads as a recommendation to treat.
+    @ViewBuilder
+    private var nextStep: some View {
+        switch result.outcome {
+        case .nits:
+            Text("Treatment")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+                .padding(.top, 8)
+            Text(Self.treatmentText)
+                .foregroundStyle(.secondary)
+        case .unsure:
+            Text("What to do")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+                .padding(.top, 8)
+            Text(Self.retakeText)
+                .foregroundStyle(.secondary)
+        case .other:
+            Text("What this does not rule out")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+                .padding(.top, 8)
+            Text(Self.negativeText)
+                .foregroundStyle(.secondary)
+        }
+    }
 
     private var backButton: some View {
         Button { dismiss() } label: {
@@ -80,35 +124,55 @@ struct ResultView: View {
     }
 
     private var actionButtons: some View {
-        HStack(spacing: 40) {
-            Button {
-                Task { await save() }
-            } label: {
-                circleIcon(saveState == .saved ? "checkmark" : "square.and.arrow.down")
-            }
-            .disabled(imageData == nil || saveState == .saved)
-            .accessibilityLabel(saveState == .saved ? "Saved to Photos" : "Save photo")
+        VStack(spacing: 12) {
+            HStack(spacing: 40) {
+                Button {
+                    Task { await save() }
+                } label: {
+                    circleIcon(saveState == .saved ? "checkmark" : "square.and.arrow.down")
+                }
+                .disabled(saveState == .saving || saveState == .saved)
+                .accessibilityLabel(saveState == .saved ? "Saved to Photos" : "Save photo")
 
-            if let image {
-                ShareLink(
-                    item: Image(uiImage: image),
-                    message: Text("\(Int((result.confidence * 100).rounded()))% chance of nits (screening aid, not a diagnosis)"),
-                    preview: SharePreview("Scan result", image: Image(uiImage: image))
-                ) {
+                // Text only. Sharing a photo of someone's scalp is a bigger step than sharing
+                // the reading, so the photo is not attached; Save keeps it on this device.
+                ShareLink(item: Self.shareText(for: result)) {
                     circleIcon("square.and.arrow.up")
                 }
-                .accessibilityLabel("Share")
+                .accessibilityLabel("Share result text")
             }
+
+            saveStatus
         }
-        .overlay(alignment: .bottom) {
-            if saveState == .failed {
-                Text("Couldn't save. Allow Photos access in Settings.")
+    }
+
+    @ViewBuilder
+    private var saveStatus: some View {
+        switch saveState {
+        case .denied:
+            VStack(spacing: 6) {
+                Text("ParasiteID can't add photos to your library.")
                     .font(.caption)
-                    .foregroundStyle(.red)
-                    .offset(y: 28)
+                    .foregroundStyle(.secondary)
+                Button("Open Settings") {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                    saveState = .idle
+                }
+                .font(.caption.weight(.semibold))
             }
+        case .failed:
+            Button("Couldn't save. Tap to try again.") { saveState = .idle }
+                .font(.caption)
+                .foregroundStyle(.red)
+        case .saved:
+            Text("Saved to Photos")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        case .idle, .saving:
+            EmptyView()
         }
-        .padding(.bottom, saveState == .failed ? 24 : 0)
     }
 
     private func circleIcon(_ name: String) -> some View {
@@ -117,18 +181,22 @@ struct ResultView: View {
             .foregroundStyle(.white)
             .frame(width: 64, height: 64)
             .background(.black, in: Circle())
+            .opacity(saveState == .saving ? 0.5 : 1)
     }
 
     private func save() async {
-        guard let imageData else { return }
+        guard saveState != .saving, saveState != .saved else { return }
+        saveState = .saving
+
         let status = await PHPhotoLibrary.requestAuthorization(for: .addOnly)
         guard status == .authorized || status == .limited else {
-            saveState = .failed
+            saveState = .denied
             return
         }
         do {
+            let data = result.imageData
             try await PHPhotoLibrary.shared().performChanges {
-                PHAssetCreationRequest.forAsset().addResource(with: .photo, data: imageData, options: nil)
+                PHAssetCreationRequest.forAsset().addResource(with: .photo, data: data, options: nil)
             }
             saveState = .saved
         } catch {
@@ -136,21 +204,43 @@ struct ResultView: View {
         }
     }
 
+    static func shareText(for result: DetectionResult) -> String {
+        "ParasiteID: \(result.label) — model score \(result.percent)%. "
+        + "A screening aid, not a diagnosis."
+    }
+
     /// Placeholder guidance until reviewed copy is provided.
     private static let treatmentText = """
-    If nits are confirmed, check the whole household with a fine-toothed comb on damp hair. \
-    Over-the-counter lice treatments (such as permethrin 1%) are commonly used — follow the \
-    package directions exactly and repeat as directed, usually after 7–10 days. Wash bedding, \
-    hats and towels in hot water and dry on high heat. Ask a pharmacist or doctor if \
-    treatment doesn't work or for children under 2.
+    Confirm first: comb damp hair with a fine-toothed nit comb and look at what comes out. \
+    If nits are confirmed, check the whole household. Over-the-counter lice treatments (such \
+    as permethrin 1%) are commonly used — follow the package directions exactly and repeat as \
+    directed, usually after 7–10 days. Wash bedding, hats and towels in hot water and dry on \
+    high heat. Ask a pharmacist or doctor if treatment doesn't work, or for children under 2.
+    """
+
+    private static let retakeText = """
+    Take another photo: get the camera close to the scalp, part the hair so the roots are \
+    visible, hold steady, and use bright even light. If repeated close-up photos keep landing \
+    here, comb damp hair with a fine-toothed comb and ask a pharmacist or doctor rather than \
+    relying on the app.
+    """
+
+    private static let negativeText = """
+    The model only separates nits from a narrow "other" group, so a low score is not a clean \
+    bill of health. It cannot rule out live lice, an early infestation with few eggs, or \
+    anything outside its training. If there is itching or you can see something moving, comb \
+    damp hair with a fine-toothed comb and ask a pharmacist or doctor.
     """
 }
 
-#Preview {
-    NavigationStack {
-        ResultView(
-            result: DetectionResult(label: "Demo", confidence: 0.87, summary: "Demo result — model inference is not connected yet."),
-            imageData: nil
-        )
-    }
+#Preview("Nits likely") {
+    NavigationStack { ResultView(result: CoreMLImageDetector.result(forScore: 0.91)) }
+}
+
+#Preview("Not sure") {
+    NavigationStack { ResultView(result: CoreMLImageDetector.result(forScore: 0.52)) }
+}
+
+#Preview("No nits detected") {
+    NavigationStack { ResultView(result: CoreMLImageDetector.result(forScore: 0.08)) }
 }
