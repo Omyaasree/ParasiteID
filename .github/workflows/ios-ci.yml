@@ -23,14 +23,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Pinned: the runner's default python has no prebuilt h5py wheel, so pip falls back to
+      # building it from source and fails looking for libhdf5.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
       - name: Verify the Core ML model matches its checkpoint
         working-directory: ${{ github.workspace }}
         run: |
-          # The runner's Homebrew python is externally managed (PEP 668), so install into a venv.
-          python3 -m venv .venv-modelcheck
-          .venv-modelcheck/bin/pip install --quiet --upgrade pip
-          .venv-modelcheck/bin/pip install --quiet numpy h5py
-          .venv-modelcheck/bin/python tools/verify_coreml_model.py \
+          python -m pip install --quiet --upgrade pip
+          python -m pip install --quiet numpy h5py
+          python tools/verify_coreml_model.py \
             EfficientNetB0.keras ios/ParasiteIDApp/ParasiteNits.mlpackage
 
       - name: Show Xcode and available simulators
